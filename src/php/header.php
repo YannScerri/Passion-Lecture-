@@ -3,7 +3,7 @@
         <h1>Passion Lecture</h1>
     </div>
     <div class="login-container">
-        <form action="connexion.php" method="post">
+        <form action="#" method="post">
             <label for="user"> </label>
             <input type="text" name="user" id="user" placeholder="Login">
             <label for="password"> </label>
@@ -14,7 +14,6 @@
 </div>
 
 <nav>
-    <h2>Menu</h2>
     <a href="#">Accueil</a>
     <a href="#">Liste des livres</a>
 </nav>
