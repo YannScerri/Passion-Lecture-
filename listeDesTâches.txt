@@ -1,0 +1,29 @@
+header/footer HTML
+
+1. page d'accueil HTML
+2. page d'accueil PHP
+
+3. connexion PHP
+
+4. ajout de livre HTML
+5. ajout de livre PHP
+
+6. page liste d'ouvrage par catégorie HTML
+7. page liste d'ouvrage par catégorie PHP
+
+8. Page de détail d'un livre avec ajout de note HTML
+9. Page de détail d'un livre avec ajout de note PHP
+
+10. suppression d'ouvrage par l'utilisateur qui l'a ajouté PHP/JS
+
+11. modification d'ouvrage par l'utilisateur qui l'a ajouté HTML
+12. modification d'ouvrage par l'utilisateur qui l'a ajouté PHP
+
+13. effectuer une recherche de livre HTML
+14. effectuer une recherche de livre PHP
+
+15. page d'info sur utilisateur(informations + nombres d'ouvrages)
+
+Verification de la sécurité du site
+
+15. L'admin a le contrôle total PHP
