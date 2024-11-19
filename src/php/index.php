@@ -21,7 +21,17 @@
     <!-- inclusion du header-->
     <?php include("./header.php")?>
 
-    
+    <div class="intro">
+        <p>Passion Lecture est un site vous permettant de donner une note à un livre que vous avez lu et de le partager au monde ! <br>
+            Vous pouvez également voir les notes que d'autres utilisateurs ont donné afin de vous renseigner sur un livre que vous voudriez lire.
+        </p>
+    </div>
+
+    <div class="last-books">
+        <div class="book">
+            
+        </div>
+    </div>
 
 
 
