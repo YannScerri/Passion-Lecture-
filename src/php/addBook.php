@@ -1,70 +1,54 @@
 <?php
 /*
  * ETML
- * Auteurs : Yann Scerri, Dany Carneiro, Maxime Pelloquin     
- * Date de création du fichier : 18.11.2024
- * Description : Fichier addBook permettant d'ajouter un nouveau livre
+ * Auteur : Dany Carneiro
+ * Date : 25.11.2024
+ * Description : Fichier addBook permettant d'ajouter un nouvel ouvrage
  */
 
- include("Database.php");  
-$db = new Database; 
+// Inclure la base de données
+include("Database.php");
+// Créer une instance de la base de données
+$db = new Database;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {     
-    // Récupération des données du formulaire
-    $title = $_POST['title'] ?? null;
-    $excerpt = $_POST['bookExcerpt'] ?? null;
-    $summary = $_POST['bookSummary'] ?? null;
-    $year = $_POST['year'] ?? null;
-    $pagesNumber = $_POST['pagesNumber'] ?? null;
-    $userId = 1; // Remplacez par l'ID utilisateur actuel (ex. via session)
-    $categoryId = $_POST['category'] ?? null; // Assurez-vous de convertir cette donnée en ID
-    $editorId = $_POST['Editor'] ?? null; // Assurez-vous de convertir cette donnée en ID
-    $authorId = $_POST['fullname'] ?? null; // Assurez-vous de convertir cette donnée en ID
+// Vérifie si le formulaire a été soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les valeurs du formulaire
+    $fullname = $_POST['fullname'];
+    $title = $_POST['title'];
+    $editor = $_POST['Editor'];
+    $year = $_POST['year'];
+    $pagesNumber = $_POST['pagesNumber'];
+    $category = $_POST['category'];
+    $bookSummary = $_POST['bookSummary'];
+    $bookExcerpt = $_POST['bookExcerpt'];
+    $bookImage = '';
 
     // Gestion de l'upload de l'image
-    if (isset($_FILES['bookCover']) && $_FILES['bookCover']['error'] === UPLOAD_ERR_OK) {
-        $coverTmpName = $_FILES['bookCover']['tmp_name'];
-        $coverName = uniqid() . "_" . $_FILES['bookCover']['name'];
-        $coverDestination = "uploads/" . $coverName;
-
-        if (!move_uploaded_file($coverTmpName, $coverDestination)) {
-            $coverDestination = null; // En cas d'échec
-        }
-    } else {
-        $coverDestination = null; // Aucun fichier n'a été uploadé
+    if (isset($_FILES['bookImage']) && $_FILES['bookImage']['error'] === 0) {
+        $uploadDir = 'uploads/';
+        $bookImage = $uploadDir . basename($_FILES['bookImage']['name']);
+        move_uploaded_file($_FILES['bookImage']['tmp_name'], $bookImage);
     }
 
-    // Préparation des données à insérer
-    $data = [
-        'titre' => $title,
-        'extrait' => $excerpt,
-        'resume' => $summary,
-        'annee' => $year,
-        'image' => $coverDestination,
-        'nombre_pages' => $pagesNumber,
-        'utilisateur_id' => $userId,
-        'categorie_id' => $categoryId,
-        'editeur_id' => $editorId,
-        'auteur_id' => $authorId,
-    ];
+    // Insérer les données dans la base
+    $db->insertBook($fullname, $title, $editor, $year, $pagesNumber, $category, $bookSummary, $bookExcerpt, $bookImage);
 
-    // Appel à la méthode insertBook
-    $result = $db->insertBook($data);
-
-    if ($result) {
-        echo "Le livre a été ajouté avec succès.";
-    } else {
-        echo "Erreur lors de l'ajout du livre.";
-    }
+    // Redirection après l'ajout
+    header("Location: index.php");
+    exit();
 }
 
+// Récupérer les catégories, auteurs, et éditeurs
+$categories = $db->getAllCategories();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link href="./css/style.css" rel="stylesheet">-->
+    <link href="./css/style.css" rel="stylesheet">
     <title>Page d'ajout</title>
     <style>
         .form-container {
@@ -93,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="#">Liste des livres</a>
         </nav>
     </div>
+
     <div class="bookinfos"></div>
     <h2>Ajouter un livre</h2>
     <div class="form-container">
