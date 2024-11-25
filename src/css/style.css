@@ -4,6 +4,7 @@ body {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .header{
@@ -42,5 +43,13 @@ nav{
 a{
     text-decoration: none;
     color: black;
+
+}
+
+.welcomeText{
+    display: flex;
+    background-color: #FFE9C6;
+    width: 40%;
+    justify-self: center;
 
 }
