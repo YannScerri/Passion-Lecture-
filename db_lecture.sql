@@ -1,3 +1,6 @@
+CREATE database if not exists db_passionLivre;
+USE db_passionLivre;
+
 CREATE TABLE t_categorie(
    categorie_id INT AUTO_INCREMENT,
    nom VARCHAR(50) NOT NULL,
