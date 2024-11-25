@@ -77,7 +77,7 @@ class Database{
      */
     public function get5LastBooks(){
 
-        $query = "SELECT titre, image, pseudo, nom, prenom FROM t_ouvrage INNER JOIN t_auteur ON t_ouvrage.auteur_id = t_auter.auteur_id INNER JOIN t_utilisateur ON t_utilisateur.utilisateur_id = t_ouvrage.utilisateur_id ORDER BY ouvrage_id DESC LIMIT 5";
+        $query = "SELECT titre, image, pseudo, nom, prenom, ouvrage_id FROM t_ouvrage INNER JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id INNER JOIN t_utilisateur ON t_utilisateur.utilisateur_id = t_ouvrage.utilisateur_id ORDER BY ouvrage_id DESC LIMIT 5";
 
         return $this->formatData($this->querySimpleExecute($query));
     }
