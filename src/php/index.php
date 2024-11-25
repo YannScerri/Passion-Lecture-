@@ -14,6 +14,11 @@ session_start();
 
  $lastBooks = $db->get5LastBooks(); 
 
+ //debug
+ //echo "<pre>";
+ //var_dump($lastBooks);
+ //echo "</pre>";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +35,8 @@ session_start();
 
     <h2>Bienvenue à Passion Lecture ! </h2>
     <div class="welcomeText">
-        <p>Ce site vous permet de noter les livres que vou savez lus et de partager vos notes au monde entier ! <br>
-            Vous pouvez rechercher des livres en cliquant sur "Liste de livres" et parcourir les différents livres que vous pouvez noter. Si le livre que vous souhaiter noter n'est pas présent, pas de problème, vous pouvez ajouter vous-même les livres que vous souhaitez. <br>
+        <p>Ce site vous permet de noter les livres que vous savez lus et de partager vos notes au monde entier ! <br>
+            Vous pouvez rechercher des livres en cliquant sur "Liste des livres" et parcourir les différents livres que vous pouvez noter. Si le livre que vous souhaiter noter n'est pas présent, pas de problème, vous pouvez ajouter vous-même les livres que vous souhaitez. <br>
         </p>
     </div>
 
@@ -44,7 +49,7 @@ session_start();
                 $html = '<div class="book">';
                 $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
                 $html .= '<p class="bookTitle">' . $book["titre"] . '</p>';
-                $html .= '<p class="bookAuthor>' . $book["prenom"] . $book["nom"] . '</p>';
+                $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
                 $html .= '<p class="bookUser">Ajouté par : ' . $book["pseudo"] . '</p>';
                 $html .= '</div>';
 
