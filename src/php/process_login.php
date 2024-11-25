@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         // L'utilisateur est authentifié, créer une session
         $_SESSION['user'] = [
+            'id' => $user['utilisateur_id'],
             'pseudo' => $user['pseudo'],
             'administrator' => $user['administrator']
         ];
