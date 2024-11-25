@@ -1,0 +1,10 @@
+{
+    "database": {
+    "host": "localhost",
+    "port": 6033,
+    "dbname": "db_teachers",
+    "username": "root",
+    "password": "root",
+    "charset": "utf8"
+  }
+}
