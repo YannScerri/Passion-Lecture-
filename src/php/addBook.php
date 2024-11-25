@@ -1,3 +1,64 @@
+<?php
+/*
+ * ETML
+ * Auteurs : Yann Scerri, Dany Carneiro, Maxime Pelloquin     
+ * Date de création du fichier : 18.11.2024
+ * Description : Fichier addBook permettant d'ajouter un nouveau livre
+ */
+
+ include("Database.php");  
+$db = new Database; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {     
+    // Récupération des données du formulaire
+    $title = $_POST['title'] ?? null;
+    $excerpt = $_POST['bookExcerpt'] ?? null;
+    $summary = $_POST['bookSummary'] ?? null;
+    $year = $_POST['year'] ?? null;
+    $pagesNumber = $_POST['pagesNumber'] ?? null;
+    $userId = 1; // Remplacez par l'ID utilisateur actuel (ex. via session)
+    $categoryId = $_POST['category'] ?? null; // Assurez-vous de convertir cette donnée en ID
+    $editorId = $_POST['Editor'] ?? null; // Assurez-vous de convertir cette donnée en ID
+    $authorId = $_POST['fullname'] ?? null; // Assurez-vous de convertir cette donnée en ID
+
+    // Gestion de l'upload de l'image
+    if (isset($_FILES['bookCover']) && $_FILES['bookCover']['error'] === UPLOAD_ERR_OK) {
+        $coverTmpName = $_FILES['bookCover']['tmp_name'];
+        $coverName = uniqid() . "_" . $_FILES['bookCover']['name'];
+        $coverDestination = "uploads/" . $coverName;
+
+        if (!move_uploaded_file($coverTmpName, $coverDestination)) {
+            $coverDestination = null; // En cas d'échec
+        }
+    } else {
+        $coverDestination = null; // Aucun fichier n'a été uploadé
+    }
+
+    // Préparation des données à insérer
+    $data = [
+        'titre' => $title,
+        'extrait' => $excerpt,
+        'resume' => $summary,
+        'annee' => $year,
+        'image' => $coverDestination,
+        'nombre_pages' => $pagesNumber,
+        'utilisateur_id' => $userId,
+        'categorie_id' => $categoryId,
+        'editeur_id' => $editorId,
+        'auteur_id' => $authorId,
+    ];
+
+    // Appel à la méthode insertBook
+    $result = $db->insertBook($data);
+
+    if ($result) {
+        echo "Le livre a été ajouté avec succès.";
+    } else {
+        echo "Erreur lors de l'ajout du livre.";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
