@@ -6,6 +6,9 @@
  * Description : Page d'acceuil de passion lecture comprenant une description du site et une liste des 5 derniers livres ajoutés
  */
 
+ include 'Database.php';
+
+ $db = new Database();
 
 ?>
 
@@ -21,7 +24,10 @@
     <!-- inclusion du header-->
     <?php include("./header.php")?>
 
-    
+    <h2>Bienvenue à Passion Lecture ! </h2>
+    <p>Ce site vous permet de noter les livres que vou savez lus et de partager vos notes au monde entier ! <br>
+        Vous pouvez rechercher des livres en cliquant sur "Liste de livres" et parcourir les différents livres que vous pouvez noter. Si le livre que vous souhaiter noter n'est pas présent, pas de problème, vous pouvez ajouter vous-même les livres que vous souhaitez. <br>
+    </p>
 
 
 

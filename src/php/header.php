@@ -4,7 +4,7 @@
     </div>
 
     <nav>
-        <a href="#">Accueil</a>
+        <a href="./index.php">Accueil</a>
         <a href="#">Liste des livres</a>
     </nav>
 </div>
