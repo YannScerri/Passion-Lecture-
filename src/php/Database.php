@@ -54,7 +54,6 @@ class Database{
         $req = $this->connector->prepare($query);
 
         foreach ($binds as $key => $value) {
-            // On utilise PDO::PARAM_STR par défaut, mais tu peux adapter en fonction des besoins
             $req->bindValue(':' . $key, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
     }
         $req->execute();
@@ -78,6 +77,50 @@ class Database{
     private function unsetData($req){
         // TODO: vider le jeu d’enregistrement
         $req->closeCursor();
+    }
+
+    /**
+     * Mthode permettant l'ajout d'un utilisateur
+     */
+    public function addUser($pseudo, $password, $admin){
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // requete sql permettant d'ajouter un utilisateur
+        $query = "INSERT INTO t_utilisateur (pseudo, password, admin, date_entree)
+        VALUES (:pseudo, :password, :admin, :date_entree)";
+
+        $date = date("d/m/y");
+
+        $binds = [
+            'pseudo' => $pseudo,
+            'password' => $hashedPassword,
+            'admin' => $admin,
+            'date_entree' => $date,
+        ];
+
+        $this->queryPrepareExecute($query, $binds);
+    }
+
+    /**
+     * Methode permettant de récupèrer un utilisateur spécifique par son login
+     */
+    public function getUserByLogin($login){
+        $query = "SELECT * FROM t_utilisateur WHERE pseudo = :pseudo";
+        $stmt = $this->queryPrepareExecute($query, ['pseudo' => $login]);
+        $users = $this->formatData($stmt);
+        return count($users) === 1 ? $users[0] : [];
+    }
+
+    /**
+     * Methode permettant de retourner tout les utilisateurs
+     */
+    public function getAllUsers(){
+        // requete sql selectionnant toute la table t_user
+        $query = "SELECT * FROM t_utilisateur";
+
+        //execute la requete sql
+        return $this->formatData($this->querySimpleExecute($query));
     }
 }
 

@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <div class="header">
     <div class="titre-header">
         <h1>Passion Lecture</h1>

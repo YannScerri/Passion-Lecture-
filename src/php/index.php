@@ -19,7 +19,8 @@
 </head>
 <body>
     <!-- inclusion du header-->
-    <?php include("./header.php")?>
+    <?php include("./header.php");
+    var_dump($_SESSION)?>
 
     
 
