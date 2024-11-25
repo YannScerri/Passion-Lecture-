@@ -42,7 +42,7 @@ session_start();
             foreach($lastBooks as $book){
 
                 $html = '<div class="book">';
-                $html .= '<img src=' . $book["image"] . 'alt="couverture du livre" class="bookImg">';
+                $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
                 $html .= '<p class="bookTitle">' . $book["titre"] . '</p>';
                 $html .= '<p class="bookAuthor>' . $book["prenom"] . $book["nom"] . '</p>';
                 $html .= '<p class="bookUser">Ajouté par : ' . $book["pseudo"] . '</p>';
