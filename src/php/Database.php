@@ -79,6 +79,38 @@ class Database{
         // TODO: vider le jeu d’enregistrement
         $req->closeCursor();
     }
+
+    /**
+ * Récupère les informations d'un ouvrage spécifique par ID.
+ * @param int $id L'identifiant de l'ouvrage
+ * @return array Les informations de l'ouvrage
+ */
+public function getOneOuvrage($id) {
+    // Requête SQL pour récupérer les détails d'un livre spécifique par son ID
+    $query = "
+            SELECT t_ouvrage.*, t_auteur.nom, t_auteur.prenom, t_editeur.nom, t_categorie.nom
+        FROM t_ouvrage
+        JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
+        JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
+        JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
+        WHERE t_ouvrage.ouvrage_id = :idOuvrage
+
+    ";
+
+    // On prépare les variables à lier à la requête
+    $binds = [];
+    $binds[":idOuvrage"] = $id;
+
+    // Exécution de la requête préparée
+    $req = $this->queryPrepareExecute($query, $binds);
+
+    // On formate les résultats en tableau associatif
+    $ouvrage = $this->formatData($req);
+
+    // Retourner le premier résultat (en général un seul livre correspond à un ID)
+    return $ouvrage[0];
+}
+
 }
 
 

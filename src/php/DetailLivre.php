@@ -5,6 +5,26 @@
  * Date : 19.11.2024
  * Description : Page de détail d'un livre
  */
+
+// Inclure la classe Database
+require_once 'Database.php';
+
+
+// Créer une instance de la classe Database
+$db = new Database();
+
+// Récupérer l'ID du livre depuis l'URL (par exemple, ?id=123)
+if (isset($_GET['id'])) {
+    $idLivre = $_GET['id'];
+
+    // Appeler la méthode pour récupérer les informations du livre
+    $livre = $db->getOneOuvrage($idLivre);
+} else {
+    // Si l'ID n'est pas passé, rediriger ou afficher une erreur
+    echo "Livre non trouvé.";
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,30 +42,34 @@
 
     <!-- Contenu principal -->
     <main class="container">
-        <h1>La vérité sur l’affaire Harry Quebert</h1>
+        <!-- Affichage du titre du livre -->
+        <h1><?php echo htmlspecialchars($livre['titre']); ?></h1>
+
         <div class="book-details">
             <div class="book-rating">
-                <p>4.2★ noté par 52 utilisateurs</p>
+                <p>4.2★ noté par 52 utilisateurs</p> <!-- Note à adapter selon la base de données -->
             </div>
             <div class="book-info">
-                <img src="placeholder.jpg" alt="Image du livre" class="book-image">
+                <!-- Image du livre à récupérer depuis la base de données -->
+                <img src="images/<?php echo htmlspecialchars($livre['image']); ?>" alt="Image du livre" class="book-image">
+
                 <ul>
-                    <li><strong>La vérité sur l’affaire Harry Quebert</strong></li>
-                    <li><strong>Auteur :</strong> Joël Dicker</li>
-                    <li><strong>Édition :</strong> Rosie Wolf</li>
-                    <li><strong>Date de parution :</strong> 2012</li>
-                    <li><strong>Catégorie :</strong> Policier</li>
-                    <li><strong>Nombre de pages :</strong> 336</li>
+                    <li><strong>Auteur :</strong> <?php echo htmlspecialchars($livre['auteur_nom']) . " " . htmlspecialchars($livre['auteur_prenom']); ?></li>
+                    <li><strong>Édition :</strong> <?php echo htmlspecialchars($livre['editeur_nom']); ?></li>
+                    <li><strong>Date de parution :</strong> <?php echo htmlspecialchars($livre['annee']); ?></li>
+                    <li><strong>Catégorie :</strong> <?php echo htmlspecialchars($livre['categorie_nom']); ?></li>
+                    <li><strong>Nombre de pages :</strong> <?php echo htmlspecialchars($livre['nombre_pages']); ?></li>
                 </ul>
             </div>
         </div>
+
         <div class="book-summary">
             <h2>Résumé</h2>
             <p>
-                À la fin du mois d’août 1975, Nola Kellergan, âgée de 15 ans, disparaît mystérieusement du village fictif d’Aurora dans le New Hampshire. 
-                Une vieille dame, qui a vu un homme poursuivre la jeune fille dans la forêt, se fait tuer quelques minutes plus tard. L’affaire est classée sans suite...
+                <?php echo nl2br(htmlspecialchars($livre['resume'])); ?>
             </p>
         </div>
+
         <div class="book-rating-form">
             <label for="rating">Noter ce livre :</label>
             <select id="rating" name="rating">
@@ -57,6 +81,7 @@
             </select>
             <button type="submit" class="submit-btn">Valider</button>
         </div>
+
         <!-- Lien vers la page d'accueil -->
         <div class="back-to-home">
             <a href="index.php" class="btn-back">Retour à l'accueil</a>
