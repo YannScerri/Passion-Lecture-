@@ -9,4 +9,7 @@
             <a href="#">Liste des livres</a>
         </nav>
     </div>
+
+    <a href="../php/connection.php"  class="userLink"><img src="../images/user.png" alt="icône de connexion" class="userIcon"></a>
+
 </div>

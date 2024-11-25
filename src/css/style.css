@@ -17,6 +17,20 @@ body {
 .content-header{
     display: flex;
     flex-direction: column;
+    justify-self: center;
+}
+
+.userIcon{
+    max-width: 10%;
+    height: auto;
+}
+
+.userLink{
+    justify-content: flex-end;
+    display: flex;
+    position: absolute;
+    top: 27px;
+    right: 20px;
 }
 
 nav{
