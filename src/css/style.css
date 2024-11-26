@@ -1,3 +1,10 @@
+/*
+    ETML
+    Auteur: Dany Carneiro
+    Date: 25.11.2024
+    Description: fichier de style pour toute l'application Passion Lecture
+*/
+
 /* Centrage global du formulaire */
 main {
     display: flex;
@@ -65,4 +72,120 @@ main {
     font-size: 12px;
     margin-top: -10px;
     margin-bottom: 10px;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.header{
+    background-color: #FFE9C6;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-header{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+}
+
+.userIcon{
+    max-width: 10%;
+    height: auto;
+}
+
+.userLink{
+    justify-content: flex-end;
+    display: flex;
+    position: absolute;
+    top: 27px;
+    right: 20px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    font-size: larger;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.welcomeText{
+    background-color: #FFE9C6;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lastBooks{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.book{
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: grid;
+    background-color: #FFE9C6;
+    gap: 10px;
+    width: 500px;
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.book img{
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    grid-column: 1;
+    grid-row: 1/4;
+}
+
+.book h3{
+    font-size: 1.2em;
+    color: #333;
+    margin: 0 0 8px;
+
+}
+
+.book p{
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.bookAuthor{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.book .bookTitle{
+    padding-top: 25px;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.bookUser{
+    grid-column: 2;
+    grid-row: 3;
 }

@@ -1,7 +1,6 @@
 <?php
 include("./Database.php");
-session_start();
-
+include("./header.php")
 ?>
 <html lang="fr">
 
@@ -15,9 +14,6 @@ session_start();
     </head>
 
     <body>
-
-        <?php include("./header.php") ?>
-
         <main>
             <form class="form-container" action="process_login.php" method="post">
 
