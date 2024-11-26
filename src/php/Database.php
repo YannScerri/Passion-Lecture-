@@ -111,5 +111,27 @@ public function getAllEditors()
     $req = $this->querySimpleExecute($query);
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
+
+// Récupérer un utilisateur par son ID
+public function getUserById($userId) {
+    $query = "
+        SELECT pseudo, email, 
+            (SELECT COUNT(*) FROM reviews WHERE user_id = :id) AS review_count, 
+            (SELECT COUNT(*) FROM books WHERE user_id = :id) AS upload_count
+        FROM users 
+        WHERE id = :id
+    ";
+    $req = $this->queryPrepareExecute($query, ['id' => $userId]);
+    return $req->fetch(PDO::FETCH_ASSOC); // Retourne une seule ligne
+}
+
+// Mettre à jour le pseudo d'un utilisateur
+public function updateUserPseudo($userId, $newPseudo) {
+    $query = "UPDATE users SET pseudo = :pseudo WHERE id = :id";
+    $this->queryPrepareExecute($query, [
+        'pseudo' => $newPseudo,
+        'id' => $userId
+    ]);
+}
    
 }
