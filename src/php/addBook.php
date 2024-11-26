@@ -1,7 +1,7 @@
 <?php
 /*
  * ETML
- * Auteur : Dany Carneiro
+ * Auteur : Dany Carneiro, Maxime Pelloquin, Yann Scerri, Hanieh Mohajerani
  * Date : 25.11.2024
  * Description : Fichier addBook permettant d'ajouter un nouvel ouvrage
  */
@@ -48,7 +48,7 @@ $categories = $db->getAllCategories();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <title>Page d'ajout</title>
     <style>
         .form-container {
@@ -85,7 +85,7 @@ $categories = $db->getAllCategories();
         <form class="form-main" action="#">
             <p>
                 <label for="fullName"></label>
-                <input type="text" name="fullname" id="fullname" placeholder="Prénom et nom">
+                <input type="text" name="fullname" id="fullname" placeholder="Prénom et nom de l'auteur">
             </p>
             <p>
                 <label for="title"></label>
