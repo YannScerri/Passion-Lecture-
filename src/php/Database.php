@@ -85,33 +85,65 @@ class Database{
  * @param int $id L'identifiant de l'ouvrage
  * @return array Les informations de l'ouvrage
  */
-public function getOneOuvrage($id) {
-    // Requête SQL pour récupérer les détails d'un livre spécifique par son ID
+
+ public function getOneOuvrage($idOuvrage) {
+    // Requête SQL pour récupérer les détails d'un livre spécifique par son ID t_ouvrage idOuvrage
+    $query = "SELECT * FROM t_ouvrage WHERE ouvrage_id = :ouvrage_id";
+
+   $binds = [];
+   $binds[":ouvrage_id"] = $idOuvrage;
+   $req = $this->queryPrepareExecute($query, $binds);
+
+    // Formater les résultats en tableau associatif
+    $ouvrage = $this->formatData($req);
+
+    // Retourner directement le premier ouvrage ou null s'il n'y a pas de résultat
+    return $ouvrage[0] ;
+}
+
+public function getOneCategorie($idCategorie){
+
+      
+    // Requête pour récupérer un enseignant spécifique par son ID
+    $query = "SELECT * FROM t_categorie WHERE categorie_id = :categorie_id";
+
+    $binds = [];
+    $binds[":categorie_id"] = $idCategorie; 
+
+    $req = $this->queryPrepareExecute($query, $binds);
+   
+
+    // Retourner les résultats sous forme de tableau associatif
+    $categorie = $this->formatData($req);
+    
+    // Retourner les informations de l'enseignant
+    return $categorie[0];
+}
+
+//admin
+public function getAllOuvrages() {
+    // Requête SQL pour récupérer tous les livres
     $query = "
-            SELECT t_ouvrage.*, t_auteur.nom, t_auteur.prenom, t_editeur.nom, t_categorie.nom
+        SELECT t_ouvrage.*, t_auteur.nom AS auteur_nom, t_auteur.prenom AS auteur_prenom, 
+               t_editeur.nom AS editeur_nom, t_categorie.nom AS categorie_nom
         FROM t_ouvrage
         JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
         JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
         JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
-        WHERE t_ouvrage.ouvrage_id = :idOuvrage
-
     ";
 
-    // On prépare les variables à lier à la requête
-    $binds = [];
-    $binds[":idOuvrage"] = $id;
-
     // Exécution de la requête préparée
-    $req = $this->queryPrepareExecute($query, $binds);
+    $req = $this->querySimpleExecute($query);
 
     // On formate les résultats en tableau associatif
-    $ouvrage = $this->formatData($req);
+    $ouvrages = $this->formatData($req);
 
-    // Retourner le premier résultat (en général un seul livre correspond à un ID)
-    return $ouvrage[0];
+    return $ouvrages;
 }
 
+
 }
+
 
 
 ?>
