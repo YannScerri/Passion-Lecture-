@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <div class="header">
     <div class="content-header">
         <div class="titre-header">

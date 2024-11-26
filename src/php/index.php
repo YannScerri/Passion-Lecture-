@@ -31,7 +31,8 @@ session_start();
 </head>
 <body>
     <!-- inclusion du header-->
-    <?php include("./header.php")?>
+    <?php include("./header.php");
+    var_dump($_SESSION)?>
 
     <h2>Bienvenue à Passion Lecture ! </h2>
     <div class="welcomeText">

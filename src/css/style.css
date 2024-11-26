@@ -1,10 +1,78 @@
 /*
     ETML
-    Auteur: dany Carneiro
+    Auteur: Dany Carneiro
     Date: 25.11.2024
     Description: fichier de style pour toute l'application Passion Lecture
 */
 
+/* Centrage global du formulaire */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #fff;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+    background-color: #ffe4c4; /* Beige clair */
+    border-radius: 15px; /* Bordures arrondies */
+    padding: 20px;
+    width: 300px; /* Largeur fixe */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles des labels */
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    align-self: flex-start; /* Aligne les labels à gauche */
+}
+
+/* Champs de saisie */
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #000; /* Bordure uniquement en bas */
+    background-color: transparent; /* Fond transparent */
+    font-size: 14px;
+    outline: none; /* Retire la bordure au focus */
+}
+
+/* Bouton de connexion */
+.form-container button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #4a90e2; /* Bleu */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Effet au survol du bouton */
+.form-container button:hover {
+    background-color: #0066cc; /* Bleu plus foncé */
+}
+
+/* Message d'erreur (facultatif) */
+.form-container .error {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
