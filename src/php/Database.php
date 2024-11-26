@@ -85,21 +85,31 @@ class Database{
  * @param int $id L'identifiant de l'ouvrage
  * @return array Les informations de l'ouvrage
  */
+public function getOneOuvrage($idOuvrage) {
+    // Requête SQL pour récupérer les détails d'un livre spécifique par son ID
+    $query = "
+        SELECT t_ouvrage.*, 
+               t_auteur.nom AS auteur_nom, 
+               t_auteur.prenom AS auteur_prenom, 
+               t_editeur.nom AS editeur_nom, 
+               t_categorie.nom AS categorie_nom
+        FROM t_ouvrage
+        JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
+        JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
+        JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
+        WHERE t_ouvrage.ouvrage_id = :ouvrage_id
+    ";
 
- public function getOneOuvrage($idOuvrage) {
-    // Requête SQL pour récupérer les détails d'un livre spécifique par son ID t_ouvrage idOuvrage
-    $query = "SELECT * FROM t_ouvrage WHERE ouvrage_id = :ouvrage_id";
+    // Préparer et exécuter la requête
+    $req = $this->queryPrepareExecute($query, ["ouvrage_id" => $idOuvrage]);
 
-   $binds = [];
-   $binds[":ouvrage_id"] = $idOuvrage;
-   $req = $this->queryPrepareExecute($query, $binds);
+    // Récupérer un seul résultat (fetch au lieu de fetchAll pour éviter un tableau d'objets)
+    $ouvrage = $req->fetch(PDO::FETCH_ASSOC);
 
-    // Formater les résultats en tableau associatif
-    $ouvrage = $this->formatData($req);
-
-    // Retourner directement le premier ouvrage ou null s'il n'y a pas de résultat
-    return $ouvrage[0] ;
+    // Retourner les résultats ou null si non trouvé
+    return $ouvrage ?: null;
 }
+
 
 public function getOneCategorie($idCategorie){
 
