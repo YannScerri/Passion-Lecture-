@@ -167,7 +167,7 @@ public function getAllEditors()
 /**
  * Supprime un livre
  */
-public function suppressBook($id){
+public function deleteBook($id){
 
     $query = "DELETE FROM t_ouvrage WHERE ouvrage_id LIKE :id";
 
