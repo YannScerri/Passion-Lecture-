@@ -4,7 +4,7 @@ session_start()
 <div class="header">
     <div class="content-header">
         <div class="titre-header">
-            <h1>Passion Lecture</h1>
+            <a href="./index.php"><h1>Passion Lecture</h1></a>
         </div>
 
         <nav>
