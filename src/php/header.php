@@ -1,10 +1,18 @@
+<?php
+session_start()
+?>
 <div class="header">
-    <div class="titre-header">
-        <h1>Passion Lecture</h1>
+    <div class="content-header">
+        <div class="titre-header">
+            <a href="./index.php"><h1>Passion Lecture</h1></a>
+        </div>
+
+        <nav>
+            <a href="./index.php">Accueil</a>
+            <a href="#">Liste des livres</a>
+        </nav>
     </div>
 
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="#">Liste des livres</a>
-    </nav>
+    <a href="../php/connection.php"  class="userLink"><img src="../images/user.png" alt="icône de connexion" class="userIcon"></a>
+
 </div>

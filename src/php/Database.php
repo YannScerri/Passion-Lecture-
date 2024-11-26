@@ -55,7 +55,6 @@ class Database{
         $req = $this->connector->prepare($query);
 
         foreach ($binds as $key => $value) {
-            // On utilise PDO::PARAM_STR par défaut, mais tu peux adapter en fonction des besoins
             $req->bindValue(':' . $key, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
     }
         $req->execute();
@@ -63,7 +62,7 @@ class Database{
     }
 
     /**
-     * Méthode permettant de formater les données récupérées
+     * formatte les données reçues par une requête en tableau associatif
      */
     private function formatData($req) {
         $result = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -71,10 +70,57 @@ class Database{
     }
 
     /**
-     * Méthode pour libérer les ressources d'une requête
+     * récupère les 5 derniers livres ajoutés
      */
-    private function unsetData($req) {
-        $req->closeCursor();
+    public function get5LastBooks(){
+
+        $query = "SELECT titre, image, pseudo, nom, prenom, ouvrage_id FROM t_ouvrage INNER JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id INNER JOIN t_utilisateur ON t_utilisateur.utilisateur_id = t_ouvrage.utilisateur_id ORDER BY ouvrage_id DESC LIMIT 5";
+
+        return $this->formatData($this->querySimpleExecute($query));
+    }
+
+    /**
+     * Mthode permettant l'ajout d'un utilisateur
+     */
+    public function addUser($pseudo, $password, $admin){
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // requete sql permettant d'ajouter un utilisateur
+        $query = "INSERT INTO t_utilisateur (pseudo, password, admin, date_entree)
+        VALUES (:pseudo, :password, :admin, :date_entree)";
+
+        $date = date("d/m/y");
+
+        $binds = [
+            'pseudo' => $pseudo,
+            'password' => $hashedPassword,
+            'admin' => $admin,
+            'date_entree' => $date,
+        ];
+
+        $this->queryPrepareExecute($query, $binds);
+    }
+
+    /**
+     * Methode permettant de récupèrer un utilisateur spécifique par son login
+     */
+    public function getUserByLogin($login){
+        $query = "SELECT * FROM t_utilisateur WHERE pseudo = :pseudo";
+        $stmt = $this->queryPrepareExecute($query, ['pseudo' => $login]);
+        $users = $this->formatData($stmt);
+        return count($users) === 1 ? $users[0] : [];
+    }
+
+    /**
+     * Methode permettant de retourner tout les utilisateurs
+     */
+    public function getAllUsers(){
+        // requete sql selectionnant toute la table t_user
+        $query = "SELECT * FROM t_utilisateur";
+
+        //execute la requete sql
+        return $this->formatData($this->querySimpleExecute($query));
     }
 
     /**
@@ -120,3 +166,4 @@ public function getAllEditors()
 }
    
 }
+?>
