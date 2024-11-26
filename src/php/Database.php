@@ -1,10 +1,11 @@
-<?php 
+<?php
 /**
  * ETML
  * Auteur : Dany Carneiro
  * Date : 19.11.2024
  * Description : fichier contenant la classe database qui permet de récupérer et d'utiliser les données dans la base de données 
  */
+
 
 
 class Database{
@@ -62,24 +63,60 @@ class Database{
     }
 
     /**
-     * TODO: à compléter
+     * Méthode permettant de formater les données récupérées
      */
-    private function formatData($req){
-
-        // traitement des données pour les retourner par exemple en tableau associatif (avec PDO::FETCH_ASSOC)
+    private function formatData($req) {
         $result = $req->fetchAll(PDO::FETCH_ASSOC);
-
         return $result;
     }
 
     /**
-     * TODO: à compléter
+     * Méthode pour libérer les ressources d'une requête
      */
-    private function unsetData($req){
-        // TODO: vider le jeu d’enregistrement
+    private function unsetData($req) {
         $req->closeCursor();
     }
+
+    /**
+     * Méthode pour insérer un livre dans la table t_ouvrage
+     */
+    public function insertBook($data) {
+        $query = "
+            INSERT INTO t_ouvrage (titre, extrait, resume, annee, image, nombre_pages, utilisateur_id, categorie_id, editeur_id, auteur_id)
+            VALUES (:titre, :extrait, :resume, :annee, :image, :nombre_pages, :utilisateur_id, :categorie_id, :editeur_id, :auteur_id)
+        ";
+
+        return $this->queryPrepareExecute($query, $data);
+    }
+
+    /**
+ * Récupère toutes les catégories
+ */
+public function getAllCategories()
+{
+    $query = "SELECT * FROM t_categorie";
+    $req = $this->querySimpleExecute($query);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Récupère tous les auteurs
+ */
+public function getAllAuthors()
+{
+    $query = "SELECT * FROM t_auteur";
+    $req = $this->querySimpleExecute($query);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
 
-?>
+/**
+ * Récupère tous les éditeurs
+ */
+public function getAllEditors()
+{
+    $query = "SELECT * FROM t_editeur";
+    $req = $this->querySimpleExecute($query);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+   
+}
