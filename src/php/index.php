@@ -48,7 +48,7 @@ session_start();
 
                 $html = '<div class="book">';
                 $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
-                $html .= '<p class="bookTitle">' . $book["titre"] . '</p>';
+                $html .= '<h3 class="bookTitle">' . $book["titre"] . '</h3>';
                 $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
                 $html .= '<p class="bookUser">Ajouté par : ' . $book["pseudo"] . '</p>';
                 $html .= '</div>';
