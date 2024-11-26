@@ -164,6 +164,19 @@ public function getAllEditors()
     $req = $this->querySimpleExecute($query);
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
-   
+/**
+ * Supprime un livre
+ */
+public function suppressBook($id){
+
+    $query = "DELETE FROM t_ouvrage WHERE ouvrage_id LIKE :id";
+
+    $binds = ['id'=>$id];
+
+    $this->queryPrepareExecute($query, $binds);
+    
+}
+
+
 }
 ?>
