@@ -87,7 +87,7 @@ class Database{
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // requete sql permettant d'ajouter un utilisateur
-        $query = "INSERT INTO t_utilisateur (pseudo, password, admin, date_entree)
+        $query = "INSERT INTO t_utilisateur (pseudo, mot_de_passe, admin, date_entree)
         VALUES (:pseudo, :password, :admin, :date_entree)";
 
         $date = date("d/m/y");
@@ -126,13 +126,26 @@ class Database{
     /**
      * Méthode pour insérer un livre dans la table t_ouvrage
      */
-    public function insertBook($data) {
+    public function insertBook($title, $excerpt, $summary, $year, $img, $pages, $userID, $categoryID, $editorID, $authorID) {
         $query = "
             INSERT INTO t_ouvrage (titre, extrait, resume, annee, image, nombre_pages, utilisateur_id, categorie_id, editeur_id, auteur_id)
             VALUES (:titre, :extrait, :resume, :annee, :image, :nombre_pages, :utilisateur_id, :categorie_id, :editeur_id, :auteur_id)
         ";
 
-        return $this->queryPrepareExecute($query, $data);
+        $binds = ['titre' => $title,
+                'extrait' => $excerpt,
+                'resume' => $summary,
+                'annee' => $year,
+                'image' => $img,
+                'nombre_pages' => $pages,
+                'utilisateur_id' => $userID,
+                'categorie_id' => $categoryID,
+                'editeur_id' => $editorID,
+                'auteur_id' => $authorID
+            ];
+                
+
+        return $this->queryPrepareExecute($query, $binds);
     }
 
     /**
@@ -175,6 +188,89 @@ public function deleteBook($id){
 
     $this->queryPrepareExecute($query, $binds);
     
+}
+
+/**
+ * Obtient l'id d'un auteur grâce à son nom
+ */
+public function getAuthorID($firstName, $lastName){
+    
+    $query = "SELECT auteur_id FROM t_auteur WHERE nom LIKE :lastName AND prenom LIKE :firstName";
+
+    $binds = [
+            'lastName' => $lastName,
+            'firstName' => $firstName
+            ];
+
+    return $this->formatData($this->queryPrepareExecute($query, $binds))[0]['auteur_id'];
+}
+
+/**
+ * Vérifie si un auteur existe déja ou pas
+ */
+public function doesAuthorExists($firstName, $lastName){
+
+    $query = "SELECT 1 FROM t_auteur WHERE nom LIKE '$lastName' AND prenom LIKE '$firstName'";
+
+    return $this->querySimpleExecute($query);
+}
+
+/**
+ * Ajoute un auteur
+ */
+public function addAuthor($firstName, $lastName){
+
+    $query = "INSERT INTO t_auteur (nom, prenom) VALUES (:firstName, :lastName)";
+
+    $binds = ['firstName' => $firstName, 'lastName' => $lastName];
+
+    $this->queryPrepareExecute($query, $binds);
+}
+
+/**
+ * Obtient l'id d'un éditeur grâce à son nom
+ */
+public function getEditorID($editor){
+    
+    $query = "SELECT editeur_id FROM t_editeur WHERE nom LIKE :editor";
+
+    $binds = ['editor'=>$editor];
+
+    return $this->formatData($this->queryPrepareExecute($query, $binds))[0]['editeur_id'];
+}
+
+/**
+ * Vérifie si un éditeur existe déja
+ */
+public function doesEditorExists($editor){
+
+    $query = "SELECT 1 FROM t_editeur WHERE nom LIKE '$editor'";
+
+    return $this->querySimpleExecute($query);
+}
+
+/**
+ * Ajoute un éditeur
+ */
+public function addEditor($editor){
+
+    $query = "INSERT INTO t_editeur (nom) VALUES (:editor)";
+
+    $binds = ['editor'=>$editor];
+
+    $this->queryPrepareExecute($query, $binds);
+}
+
+/**
+ * Obtient l'id d'une catégorie grâce à son nom
+ */
+public function getCategoryID($category){
+    
+    $query = "SELECT categorie_id FROM t_categorie WHERE nom LIKE :category";
+
+    $binds = ['category'=>$category];
+
+    return $this->formatData($this->queryPrepareExecute($query, $binds))[0]['categorie_id'];
 }
 
 

@@ -24,6 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Utilisateur ajouté avec succès !";
 
     // redirection vers la page d'ajout d'utilisateur
-    header('Location: ./addUser.php');
+    header('Location: ./index.php');
 }
 ?>

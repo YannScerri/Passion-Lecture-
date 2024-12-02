@@ -24,7 +24,7 @@ CREATE TABLE t_editeur(
 CREATE TABLE t_utilisateur(
    utilisateur_id INT AUTO_INCREMENT,
    pseudo VARCHAR(50) NOT NULL,
-   password VARCHAR(50) NOT NULL,
+   mot_de_passe VARCHAR(255) NOT NULL,
    date_entree DATE NOT NULL,
    admin BOOLEAN NOT NULL,
    PRIMARY KEY(utilisateur_id)

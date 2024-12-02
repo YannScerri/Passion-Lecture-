@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $db->getUserByLogin($user);
     
     // Vérifie si l'utilisateur existe et si le mot de passe correspond
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && password_verify($password, $user['mot_de_passe'])) {
         // L'utilisateur est authentifié, créer une session
         $_SESSION['user'] = [
             'id' => $user['utilisateur_id'],
