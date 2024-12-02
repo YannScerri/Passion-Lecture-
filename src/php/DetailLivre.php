@@ -35,21 +35,27 @@
 <!-- Contenu principal -->
 <main class="container">
     <!-- Affichage des détails du livre -->
-    <h1>Détail du livre : <?php echo htmlspecialchars($ouvrage['titre']); ?></h1>
+    <h1> <?php echo htmlspecialchars($ouvrage['titre']); ?></h1>
 
     <div class="book-details">
       
+     <!-- Évaluation du livre -->
+     <div class="book-rating">
+            <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
+        </div>
         <!-- Image du livre -->
-        <img src="../img/<?php echo rawurlencode($ouvrage['image']); ?>" 
-     alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre']); ?>" 
-     class="book-image">
+        <img src="../img/HarryQuebert.png" 
+                 alt="Image du livre La vérité sur l'affaire Harry Quebert" 
+                 class="book-image">
+
 
         
         <!-- Informations sur le livre -->
         <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
         <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
-        <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
         <p><strong>Date de publication :</strong> <?php echo htmlspecialchars($ouvrage['annee']); ?></p>
+        <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
+        <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
         
         <!-- Résumé du livre -->
         <div class="book-summary">
@@ -57,10 +63,7 @@
             <p><?php echo nl2br(htmlspecialchars($ouvrage['resume'])); ?></p>
         </div>
 
-        <!-- Évaluation du livre -->
-        <div class="book-rating">
-            <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
-        </div>
+       <hr>
     </div>
 
     <!-- Formulaire pour noter le livre -->
