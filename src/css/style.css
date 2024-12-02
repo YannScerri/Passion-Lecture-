@@ -152,6 +152,19 @@ a{
     grid-template-rows: 33% 33% 33%;
 }
 
+.bookFromBookList{
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: grid;
+    background-color: #FFE9C6;
+    gap: 10px;
+    width: 500px;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+}
+
 .book img{
     max-width: 100px;
     height: auto;
@@ -188,4 +201,9 @@ a{
 .bookUser{
     grid-column: 2;
     grid-row: 3;
+}
+
+footer{
+    position:absolute;
+    bottom:0;
 }

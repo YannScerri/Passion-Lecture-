@@ -127,7 +127,7 @@ class Database{
     /**
      * Methode permettant de retourner tout les livres pour une catégorie
      */
-    public function getBooksByCategory($categorie){
+    public function getBooksByCategory($category){
         // requete sql selectionnant tout les livres d'une catégorie
          $query = "SELECT 
         t_ouvrage.image AS photo_du_livre,
@@ -143,11 +143,21 @@ class Database{
         INNER JOIN 
             t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
         WHERE 
-            t_categorie.nom = 'NomDeLaCategorie';"
+            t_categorie.nom = '$category'";
 
-        // obtenir note, nom auteur, nom de a personne de l'ajout
-        
-        //---- TODO ----\\
+        // retourne le résultat ous forme de tableau
+        return $this->formatData($this->querySimpleExecute($query));
+    }
+
+    /**
+     * Methode permettant de retourner tout les livres pour une catégorie
+     */
+    public function getAllCategory(){
+        // requete sql selectionnant tout les livres d'une catégorie
+         $query = "SELECT * from t_categorie";
+
+         //retourne le résultat de la requete sous forme de tableau
+         return $this->formatData($this->querySimpleExecute($query));
     }
 }
 ?>
