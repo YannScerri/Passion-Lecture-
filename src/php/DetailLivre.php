@@ -9,6 +9,7 @@
  require_once 'Database.php';
  $db = new Database();
 
+ //ces code pour affiches tout les livre comme admin
  //$ouvrage = $db->getOneOuvrage($_GET["ouvrage_id"]);
  //$categorie = $db->getOneCategorie($ouvrage["categorie_id"]);
  $ouvrage = $db->getOneOuvrage($_GET['id']);
@@ -44,7 +45,7 @@
             <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
         </div>
         <!-- Image du livre -->
-        <img src="../img/HarryQuebert.png" 
+        <img src="../images/HarryQuebert.png" 
                  alt="Image du livre La vérité sur l'affaire Harry Quebert" 
                  class="book-image">
 
@@ -91,7 +92,7 @@
 </html>
 <?php
 
-//test code si ca marche avec le methode getAllOuvrages 
+//ces code ca marche avec le methode getAllOuvrages et pour afficher tout les livre comme admin
 /*
 <?php
 require_once 'Database.php';
