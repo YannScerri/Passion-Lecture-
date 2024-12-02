@@ -1,4 +1,6 @@
 <?php
+//démarrer la session
+session_start();
 // Inclure la classe Database
 require_once 'Database.php';
 
@@ -6,7 +8,15 @@ require_once 'Database.php';
 $db = new Database();
 
 // ID de l'utilisateur simulé
-$userId = 1; // Exemple statique, à remplacer par un système de sessions
+//$userId = 1; // Exemple statique, à remplacer par un système de sessions
+
+//vérifier si un utilisateur est connecté
+if(!isset($_SESSION['userId'])){
+    die("Vous devez être connecté pour accéder à cette page");
+}
+
+//récupérer id utilisateur depuis session
+$userId = $_SESSION['userId'];
 
 // Récupérer les données de l'utilisateur
 $userData = $db->getUserById($userId);
@@ -78,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo'])) {
             <strong>Année :</strong> <?php echo htmlspecialchars($bookUploaded['annee']); ?><br>
             <strong>Nombre de pages :</strong> <?php echo htmlspecialchars($bookUploaded['nombre_pages']); ?><br>
             <strong>Image :</strong> <img src="<?php echo htmlspecialchars($bookUploaded['image']); ?>" alt="Image du livre">
+            <!--<strong>Image :</strong> <img src="../images/dune.jpg" alt="Image du livre">-->
+            
 
         </p>
     <?php else: ?>
