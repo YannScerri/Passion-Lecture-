@@ -14,6 +14,8 @@
 
  $id = $_GET['idBook'];
 
+ unlink($db->getBookImage($id));
+
  $db-> deleteBook($id);
 
  header('Location: ./index.php');

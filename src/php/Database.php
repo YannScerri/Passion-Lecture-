@@ -266,6 +266,15 @@ public function addEditor($editor){
     $this->queryPrepareExecute($query, $binds);
 }
 
+/**
+ * obtient le chemin de l'image d'un livre grâce à son ID
+ */
+public function getBookImage($id){
+
+    $query = "SELECT image FROM t_ouvrage WHERE ouvrage_id = '$id'";
+
+    return $this->formatData($this->querySimpleExecute($query))[0]['image'];
+}
 
 }
 ?>
