@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bookExcerpt = $_POST['bookExcerpt'];
     $image = $_FILES['bookCover'];
 
-
     //Vérifie si l'auteur existe déja. Si ce n'est pas le cas, crée un nouvel auteur puis récupère son id
     if(!$db->doesAuthorExists($firstName, $lastName)){
 

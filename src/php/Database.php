@@ -211,7 +211,13 @@ public function doesAuthorExists($firstName, $lastName){
 
     $query = "SELECT 1 FROM t_auteur WHERE nom LIKE '$lastName' AND prenom LIKE '$firstName'";
 
-    return $this->querySimpleExecute($query);
+    $result = $this->formatData($this->querySimpleExecute($query));
+
+    if(empty($result)){
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**
