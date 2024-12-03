@@ -49,18 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //récupère l'identifiant de l'utilisateur
     $userID = $_SESSION['user']['id'];
 
-
-    //récupère l'id de la catégorie choisie
-    $categoryID = $db->getCategoryID($category);
-
-
     //met le bon format de date
     $year = $year . '-01-01';
-
-    var_dump($authorID);
-    var_dump($firstName);
-    var_dump($lastName);
-    var_dump($_POST);
 
 
     // Gestion de l'upload de l'image
@@ -72,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Insérer les données dans la base
-    $db->insertBook($title, $bookExcerpt, $bookSummary, $year, $dest, $pagesNumber, $userID, $categoryID, $editorId, $authorID);
+    $db->insertBook($title, $bookExcerpt, $bookSummary, $year, $dest, $pagesNumber, $userID, $category, $editorId, $authorID);
 
     // Redirection après l'ajout
     header("Location: index.php");

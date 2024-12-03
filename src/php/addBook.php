@@ -11,7 +11,7 @@ include("Database.php");
 // Créer une instance de la base de données
 $db = new Database;
 
-// Récupérer les catégories, auteurs, et éditeurs
+// Récupérer les catégories
 $categories = $db->getAllCategories();
 ?>
 
@@ -55,8 +55,20 @@ $categories = $db->getAllCategories();
                 <input type="text" name="pagesNumber" id="pagesNumber" placeholder="Nombre de pages">
             </p>
             <p>
-                <label for="category"></label>
-                <input type="text" name="category" id="category" placeholder="Catégorie">
+            <label for="category"></label>
+                <select name="category" id="category">
+                    <option value="">--Choisisez une catégorie--</option>
+                    <?php
+
+                    $id = "";
+                    $categoryName = "";
+                    //affichage de chaque catégorie présente dans la base de données
+                    foreach($categories as $category){
+
+                            echo '<option value="' . $category["categorie_id"] . '">' . $category["nom"] . '</option>';
+                    }
+                    ?>
+                </select>
             </p>
             <p>
                 <label for="bookSummary"></label>
@@ -79,8 +91,6 @@ $categories = $db->getAllCategories();
                 <button type="submit">Ajouter le livre</button>
             </p>
         </form>
-
-        <!-- Section pour l'ajout de l'image -->
 
         </div>
     </div>

@@ -148,14 +148,13 @@ class Database{
         return $this->queryPrepareExecute($query, $binds);
     }
 
-    /**
+/**
  * Récupère toutes les catégories
  */
 public function getAllCategories()
 {
     $query = "SELECT * FROM t_categorie";
-    $req = $this->querySimpleExecute($query);
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+    return $this->formatData($this->querySimpleExecute($query));
 }
 
 /**
@@ -259,18 +258,6 @@ public function addEditor($editor){
     $binds = ['editor'=>$editor];
 
     $this->queryPrepareExecute($query, $binds);
-}
-
-/**
- * Obtient l'id d'une catégorie grâce à son nom
- */
-public function getCategoryID($category){
-    
-    $query = "SELECT categorie_id FROM t_categorie WHERE nom LIKE :category";
-
-    $binds = ['category'=>$category];
-
-    return $this->formatData($this->queryPrepareExecute($query, $binds))[0]['categorie_id'];
 }
 
 

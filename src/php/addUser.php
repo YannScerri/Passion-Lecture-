@@ -7,9 +7,6 @@
     include("./Database.php");
     $db = new Database();
     $users = $db->getAllUsers();
-    echo "<pre>";
-    var_dump($users);
-    echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
