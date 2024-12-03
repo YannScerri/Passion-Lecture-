@@ -276,5 +276,46 @@ public function getBookImage($id){
     return $this->formatData($this->querySimpleExecute($query))[0]['image'];
 }
 
+/**
+ * obtient toutes les informations d'un livre grâce à son ID
+ */
+public function getBook($id){
+
+    $query = "SELECT * FROM t_ouvrage WHERE ouvrage_id = :id";
+
+    $binds = ['id'=>$id];
+
+    return $this->formatData($this->queryPrepareExecute($query, $binds))[0];
+}
+
+/**
+ * obtient le nom de l'auteur grâce à son ID
+ */
+public function getAuthorName($id){
+
+    $query = "SELECT * FROM t_auteur WHERE auteur_id = '$id'";
+
+    return $this->formatData($this->querySimpleExecute($query))[0];
+}
+
+/**
+ * obtient la nom de l'éditeur grâce à son ID
+ */
+public function getEditorName($id){
+
+    $query = "SELECT * FROM t_editeur WHERE editeur_id = '$id'";
+
+    return $this->formatData($this->querySimpleExecute($query))[0];
+}
+
+/**
+ * obtient le nom d'une catégorie grâce à son ID
+ */
+public function getCategoryName($id){
+
+    $query = "SELECT * FROM t_categorie WHERE categorie_id = '$id'";
+
+    return $this->formatData($this->querySimpleExecute($query))[0];
+}
 }
 ?>

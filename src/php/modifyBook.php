@@ -16,6 +16,17 @@ $db = new Database;
 // Récupérer les catégories
 $categories = $db->getAllCategories();
 
+//résupère les informations du livre à modifier
+$bookId = $_GET['bookId'];
+
+$book = $db->getBook($bookId);
+
+$author = $db->getAuthorName($book['auteur_id']);
+
+$editor = $db->getEditorName($book['editeur_id']);
+
+$bookCategory = $db->getCategoryName($book['categorie_id']);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,66 +44,74 @@ $categories = $db->getAllCategories();
     <div class="form-container">
         <!-- Formulaire principal -->
         <form class="form-main" action="./addBookAction.php" method="POST" enctype="multipart/form-data">
-            <p>
-                <label for="firstName"></label>
-                <input type="text" name="firstName" id="firstName" placeholder="Prénom de l'auteur">
-            </p>
-            <p>
-                <label for="lastName"></label>
-                <input type="text" name="lastName" id="lastName" placeholder="Nom de l'auteur">
-            </p>
-            <p>
-                <label for="title"></label>
-                <input type="text" name="title" id="title" placeholder="Titre du livre">
-            </p>
-            <p> 
-                <label for="Editor"></label>
-                <input type="text" name="Editor" id="Editor" placeholder="Editeur">
-            </p>
-            <p>
-                <label for="year"></label>
-                <input type="text" name="year" id="year" placeholder="Année de publication">
-            </p>
-            <p>
-                <label for="pagesNumber"></label>
-                <input type="text" name="pagesNumber" id="pagesNumber" placeholder="Nombre de pages">
-            </p>
-            <p>
-                <label for="category"></label>
-                <select name="category" id="category">
-                    <option value="">--Choisisez une catégorie--</option>
-                    <?php
+            <?php
+            $html = "";
+            $html .= "<p>";
+            $html .= '<label for="firstName"></label>';
+            $html .= '<input type="text" name="firstName" id="firstName" placeholder="Prénom de l\'auteur" value="' . $author['prenom'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="lastName"></label>';
+            $html .= '<input type="text" name="lastName" id="lastName" placeholder="Nom de l\'auteur" value="' . $author['nom'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="title"></label>';
+            $html .= '<input type="text" name="title" id="title" placeholder="Titre du livre" value="' . $book['titre'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="Editor"></label>';
+            $html .= '<input type="text" name="Editor" id="Editor" placeholder="Editeur" value="' . $editor['nom'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="year"></label>';
+            $html .= '<input type="text" name="year" id="year" placeholder="Année de publication" value="' . $book['annee'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="pagesNumber"></label>';
+            $html .= '<input type="text" name="pagesNumber" id="pagesNumber" placeholder="Nombre de pages" value="' . $book['nombre_pages'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="category"></label>';
+            $html .= '<select name="category" id="category">';
+            $html .= '<option value="' . $book['categorie_id'] . '">' . $bookCategory['nom'] . '</option>';
 
-                    $id = "";
-                    $categoryName = "";
-                    //affichage de chaque catégorie présente dans la base de données
-                    foreach($categories as $category){
+            $id = "";
+            $categoryName = "";
+            //affichage de chaque catégorie présente dans la base de données
+            foreach($categories as $category){
 
-                            echo '<option value="' . $category["categorie_id"] . '">' . $category["nom"] . '</option>';
-                    }
-                    ?>
-                </select>
-            </p>
-            <p>
-                <label for="bookSummary"></label>
-                <textarea name="bookSummary" id="bookSummary" placeholder="Résumé de l'ouvrage"></textarea>
-            </p>
-            <p>
-                <label for="bookExcerpt"></label>
-                <input type="url" name="bookExcerpt" id="bookExcerpt" placeholder="Lien vers extrait">
-            </p>
-                <div class="form-image">
-                <h3>Image de couverture</h3>
-                <p>
-                    <label for="bookCover"></label>
-                    <input type="file" name="bookCover" id="bookCover" accept="image/*">
-                </p>
-                <p>
-                    Formats acceptés : JPG, PNG, GIF
-                </p>
-            <p>
-                <button type="submit">Ajouter le livre</button>
-            </p>
+                if($category['categorie_id'] == $book['categorie_id']){
+                    continue;
+                }
+
+                $html .= '<option value="' . $category["categorie_id"] . '">' . $category["nom"] . '</option>';
+            }
+                    
+            $html .= '</select>';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="bookSummary"></label>';
+            $html .= '<textarea name="bookSummary" id="bookSummary" placeholder="Résumé de l\'ouvrage">'. $book['resume'] . '</textarea>';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<label for="bookExcerpt"></label>';
+            $html .= '<input type="url" name="bookExcerpt" id="bookExcerpt" placeholder="Lien vers extrait" value="' . $book['extrait'] . '">';
+            $html .= '</p>';
+            $html .= '<div class="form-image">';
+            $html .= '<h3>Image de couverture</h3>';
+            $html .= '<p>';
+            $html .= '<label for="bookCover"></label>';
+            $html .= '<input type="file" name="bookCover" id="bookCover" accept="image/*" value="' . $book['image'] . '">';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= 'Formats acceptés : JPG, PNG, GIF';
+            $html .= '</p>';
+            $html .= '<p>';
+            $html .= '<button type="submit">Ajouter le livre</button>';
+            $html .= '</p>';
+
+            echo $html;
+            ?>
         </form>
 
         </div>
