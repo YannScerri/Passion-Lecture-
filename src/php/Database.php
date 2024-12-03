@@ -148,7 +148,7 @@ public function getBooksUploadedByUser($userId) {
     return $this->formatData($req); // Retourne les résultats sous forme de tableau associatif
 }
 
-//Récupérer les livres notés par l'utilisateur
+//Récupérer les livres notés par l'utilisateur (avec alias pour simplifier)
 public function getBooksRatedByUser($userId) {
     $query = "
         SELECT o.titre, o.image, a.note 

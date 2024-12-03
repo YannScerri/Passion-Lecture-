@@ -1,46 +1,49 @@
 <?php
-//démarrer la session
-session_start();
+/*
+ * ETML
+ * Auteur : Dany Carneiro, Maxime Pelloquin, Yann Scerri, Hanieh Mohajerani
+ * Date : 25.11.2024
+ * Description : Fichier profile permettant de voir son profil ou le profil de quelqun d'autre (version avec session)
+ */
+
+session_start(); // Démarre la session
+
 // Inclure la classe Database
 require_once 'Database.php';
+
+// Simuler une session utilisateur si aucune n'existe
+if (!isset($_SESSION['userId'])) {
+    $_SESSION['userId'] = 1; // ID utilisateur simulé (exemple : 1)
+}
+
+// Vérifier si un utilisateur est connecté
+if (!isset($_SESSION['userId'])) {
+    die("Vous devez être connecté pour accéder à cette page.");
+}
 
 // Initialiser l'objet Database
 $db = new Database();
 
-// ID de l'utilisateur simulé
-//$userId = 1; // Exemple statique, à remplacer par un système de sessions
-
-//vérifier si un utilisateur est connecté
-if(!isset($_SESSION['userId'])){
-    die("Vous devez être connecté pour accéder à cette page");
-}
-
-//récupérer id utilisateur depuis session
+// Récupérer l'ID de l'utilisateur depuis la session
 $userId = $_SESSION['userId'];
 
 // Récupérer les données de l'utilisateur
 $userData = $db->getUserById($userId);
 
-// Vérifier si les données de l'utilisateur ont été trouvées
+// Vérifier si l'utilisateur existe
 if (!$userData) {
     die("Utilisateur non trouvé.");
 }
 
-// Récupérer un livre ajouté et un livre noté
-$booksUploaded = $db->getBooksUploadedByUser($userId);
-$booksRated = $db->getBooksRatedByUser($userId);
+// Récupérer les livres ajoutés et notés par l'utilisateur
+$uploadedBooks = $db->getBooksUploadedByUser($userId);
+$ratedBooks = $db->getBooksRatedByUser($userId);
 
-// Obtenir le premier livre ajouté (s'il existe)
-$bookUploaded = $booksUploaded[0] ?? null;
-
-// Obtenir le premier livre noté (s'il existe)
-$bookRated = $booksRated[0] ?? null;
-
-// Si le formulaire est soumis pour changer le pseudo
+// Possibilité de changer le pseudo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo'])) {
-    $newPseudo = htmlspecialchars($_POST['newPseudo']); // Protéger les entrées utilisateur
+    $newPseudo = htmlspecialchars($_POST['newPseudo']);
     $db->updateUserPseudo($userId, $newPseudo);
-    header("Location: profile.php"); // Recharger la page pour éviter la resoumission du formulaire
+    header("Location: profile.php"); // Recharger la page 
     exit;
 }
 ?>
@@ -63,10 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo'])) {
         <a href="#">Liste des livres</a>
     </nav>
 </div>
-    <h1>Profil</h1>
+<hr>
+    <h1>Profil de <?php echo htmlspecialchars($userData['pseudo']); ?> </h1> 
     
     <!-- Section d'informations utilisateur -->
-    <h2><?php echo htmlspecialchars($userData['pseudo']); ?></h2>
+    <h2></h2>
     <p>Nombre d'avis postés : <?php echo $userData['review_count']; ?></p>
     <p>Nombre de livres uploadés : <?php echo $userData['upload_count']; ?></p>
 
@@ -77,36 +81,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo'])) {
         <button type="submit">Valider</button>
     </form>
 
-    <hr>
+    <!-- Affichage des livres ajoutés -->
+    <h2>Livres ajoutés</h2>
+    <?php if (!empty($uploadedBooks)): ?>
+        <ul>
+            <?php foreach ($uploadedBooks as $book): ?>
+                <li>
+                    <h3><?php echo htmlspecialchars($book['titre']); ?></h3>
+                    <p><strong>Extrait :</strong> <?php echo htmlspecialchars($book['extrait']); ?></p>
+                    <p><strong>Nombre de pages :</strong> <?php echo $book['nombre_pages']; ?></p>
+                    <img src="images/<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>Aucun livre ajouté.</p>
+    <?php endif; ?>
 
-    <!-- Section d'affichage d'un livre ajouté -->
-    <h3>Un livre ajouté :</h3>
-    <?php if ($bookUploaded): ?>
-        <p>
-            <strong>Titre :</strong> <?php echo htmlspecialchars($bookUploaded['titre']); ?><br>
-            <strong>Extrait :</strong> <?php echo htmlspecialchars($bookUploaded['extrait']); ?><br>
-            <strong>Année :</strong> <?php echo htmlspecialchars($bookUploaded['annee']); ?><br>
-            <strong>Nombre de pages :</strong> <?php echo htmlspecialchars($bookUploaded['nombre_pages']); ?><br>
-            <strong>Image :</strong> <img src="<?php echo htmlspecialchars($bookUploaded['image']); ?>" alt="Image du livre">
-            <!--<strong>Image :</strong> <img src="../images/dune.jpg" alt="Image du livre">-->
+    <!-- Affichage des livres notés -->
+    <h2>Livres notés</h2>
+    <ul>
+        <?php foreach ($ratedBooks as $book): ?>
             
-
-        </p>
-    <?php else: ?>
-        <p>Aucun livre ajouté pour le moment.</p>
-    <?php endif; ?>
-
-    <hr>
-
-    <!-- Section d'affichage d'un livre noté -->
-    <h3>Un livre noté :</h3>
-    <?php if ($bookRated): ?>
-        <p>
-            <strong>Titre :</strong> <?php echo htmlspecialchars($bookRated['titre']); ?><br>
-            <strong>Note :</strong> <?php echo htmlspecialchars($bookRated['note']); ?>/5<br>
-        </p>
-    <?php else: ?>
-        <p>Aucun livre noté pour le moment.</p>
-    <?php endif; ?>
+            <li><?php echo htmlspecialchars($book['titre']); ?> - Note : <?php echo $book['note']; ?></li>
+            
+        <?php endforeach; ?>
+    </ul>
+<hr>
+    <footer>
+    <p>Copyright Dany Carneiro, Yann Scerri, Maxime Pelloquin, Hanieh Mohajerani - Passion Lecture - 2024</p>
+</footer>
 </body>
 </html>
