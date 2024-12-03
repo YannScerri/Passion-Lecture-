@@ -151,7 +151,12 @@ public function getBooksUploadedByUser($userId) {
 //Récupérer les livres notés par l'utilisateur (avec alias pour simplifier)
 public function getBooksRatedByUser($userId) {
     $query = "
-        SELECT o.titre, o.image, a.note 
+        SELECT 
+            o.titre, 
+            o.extrait, 
+            o.nombre_pages, 
+            o.image, 
+            a.note 
         FROM apprecier a
         INNER JOIN t_ouvrage o ON a.ouvrage_id = o.ouvrage_id
         WHERE a.utilisateur_id = :id
