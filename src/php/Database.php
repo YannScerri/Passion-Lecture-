@@ -152,7 +152,7 @@ class Database{
     /**
      * Methode permettant de retourner tout les livres pour une catégorie
      */
-    public function getAllCategory(){
+    public function getAllCategories(){
         // requete sql selectionnant tout les livres d'une catégorie
          $query = "SELECT * from t_categorie";
 

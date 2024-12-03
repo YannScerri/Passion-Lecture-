@@ -13,50 +13,48 @@ $db = new Database();
     </head>
 
     <body>
-        
         <main>
+            <div class = "main_booksList">
+                <?php
+                // Récupérer toutes les catégories
+                $categories = $db->getAllCategories();
 
-        <?php
-        $categories = $db->getAllCategory();
-        //"echo "<pre>";
-        //var_dump($db->getBooksByCategory("Police"));
-        //echo "<pre>";
-        ?>
-
-    <?php
-    // Récupérer toutes les catégories
-    $categories = $db->getAllCategory();
-
-    //-- TODO mise en page --\\
+                //-- TODO mise en page --\\
 
 
-    // Vérification si des catégories existent
-    if (!empty($categories)) {
-        foreach ($categories as $category) {
-            $categoryName = $category['nom'];
-            
-            // Récupérer les livres pour cette catégorie
-            $books = $db->getBooksByCategory($categoryName);
-            
-            // Vérification si des livres sont retournés pour cette catégorie
-            if (!empty($books)) {
-                echo "<h2>Livres pour la catégorie : $categoryName</h2>";
-                foreach ($books as $book) {
-                    echo "<div class='bookFromBookList'>";
-                    echo "<img src='{$book['photo_du_livre']}' alt='Image du livre' width='100'>";
-                    echo "<h3>{$book['nom_du_livre']}</h3>";
-                    echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
-                    echo "<p>Ajouté par : {$book['pseudo_ajouteur']}</p>";
-                    echo "</div>";
+                // Vérification si des catégories existent
+                if (!empty($categories)) {
+                    foreach ($categories as $category) {
+                        $categoryName = $category['nom'];
+                        
+                        // Récupérer les livres pour cette catégorie
+                        $books = $db->getBooksByCategory($categoryName);
+                        
+                        // Vérification si des livres sont retournés pour cette catégorie
+                        if (!empty($books)) {
+                            echo "<h2>Livres pour la catégorie : $categoryName</h2>";
+                            echo "<div class='books-grid'>"; // Conteneur des livres
+
+                            foreach ($books as $book) {
+                                echo "<div class='book-card'>";
+                                    echo "<div class='book-content'>";
+                                    echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
+                                    echo "<h3>{$book['nom_du_livre']}</h3>";
+                                    echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
+                                    echo "<p>Ajouté par : {$book['pseudo_ajouteur']}</p>";
+                                    echo "</div>";
+                                echo "</div>";
+                            }
+
+                            echo "</div>";
+                        } 
+                    }
+                } else {
+                    echo "<p>Aucune catégorie disponible.</p>";
                 }
-            } 
-        }
-    } else {
-        echo "<p>Aucune catégorie disponible.</p>";
-    }
-    ?>
-</main>
-
+                ?>
+            </div>
+        </main>
         <?php include("./footer.php") ?>
     </body>
 </html>
