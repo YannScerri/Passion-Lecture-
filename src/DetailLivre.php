@@ -35,7 +35,7 @@
      <?php include("./header.php") ?>
 
 <!-- Contenu principal -->
-<main class="container">
+<main class="Mycontainer">
     <h2> <?php echo htmlspecialchars($ouvrage['titre']); ?></h2>
 
     <div class="book-details">
@@ -82,7 +82,10 @@
                 </select>
                 <button type="submit" class="submit-btn">Valider</button>
             </div>
+            <br>
+          <br>
         </div>
+      
     </div>
 
    

@@ -6,13 +6,13 @@
 */
 
 /* Centrage global du formulaire  *****************JE DOIT CORRIGER ICI:*************************/
-/*main {
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
     background-color: #fff;
-} *****************JE DOIT CORRIGER ICI:**************************/
+} 
 
 /* Conteneur du formulaire */
 .form-container {
@@ -195,19 +195,17 @@ a{
 .book-details {
     display: flex; /* Permet un alignement horizontal */
     gap: 30px; /* Espacement entre les enfants */
-    padding: 20px; /* Espacement interne */
-    background-color: #ffe4c4; /* Beige clair */
+    
+    padding-left: 70px;
+    background-color: #FFE9C6; /* Beige clair */
     border-radius: 15px; /* Coins arrondis */
     max-width: 1200px; /* Largeur maximale */
-    width: 100%; /* Double la largeur */
-    margin: 40px auto; /* Centré horizontalement */
+    width: auto; /* Double la largeur */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
     flex-wrap: wrap; /* Permet aux éléments de s'adapter et se réorganiser */
     justify-content: space-between; /* Répartition égale des éléments */
-    padding-left: 10%; /* Ajoute de l'espace à gauche */
-    padding-right: 10%; /* Si nécessaire, ajoute également de l'espace à droite */
     align-items: center; /* Centrer verticalement */
-   
+
 }
 
  /*p-DetailLivre*/
@@ -218,6 +216,7 @@ a{
     border-radius: 8px; /* Coins arrondis */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre visuelle */
     align-self: flex-start; /* Aligne l'image en haut */
+    margin-top: 0px;
 }
 
  /*p-DetailLivre*/
@@ -225,10 +224,10 @@ a{
 .book-info {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacement entre les éléments */
     font-size: 1em;
     color: #333;
     flex: 1; /* Prend tout l'espace restant disponible */
+    margin-top: 0px;
 }
 
  /*p-DetailLivre*/
@@ -236,7 +235,7 @@ a{
 h2 {
     text-align: center; /* Centre le texte horizontalement */
     margin-bottom: 4%; /* Espace en dessous du titre */
-    font-size: 3em; /* Taille du titre */
+    font-size: 2.5em; /* Taille du titre */
     color: #333; /* Couleur du texte (vous pouvez ajuster cette couleur si nécessaire) */
 }
 
@@ -249,6 +248,23 @@ h2 {
     font-weight: bold;
 }
 
+ /*p-DetailLivre*/
+/* Main Container */
+.Mycontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Toute la hauteur de la fenêtre */
+    background-color: #fff; /* Fond blanc */
+    padding: 20px;
+}
+
+ /*p-DetailLivre*/
+/* Éléments <p> dans .book-info */
+.book-info p {
+    margin-top: 5px;
+}
 
 
 
