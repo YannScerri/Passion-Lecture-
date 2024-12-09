@@ -1,7 +1,7 @@
 <?php
 /**
  * ETML
- * Auteur : Dany Carneiro
+ * Auteur : Dany Carneiro, Maxime Pelloquin, Yann Scerri, Hanieh Mohajerani
  * Date : 19.11.2024
  * Description : fichier contenant la classe database qui permet de récupérer et d'utiliser les données dans la base de données 
  */
@@ -164,6 +164,61 @@ public function getAllEditors()
     $req = $this->querySimpleExecute($query);
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
+
+// Récupérer un utilisateur par son ID
+public function getUserById($userId) {
+    $query = "
+        SELECT 
+            pseudo, 
+            (SELECT COUNT(*) FROM apprecier WHERE utilisateur_id = :id) AS review_count,
+            (SELECT COUNT(*) FROM t_ouvrage WHERE utilisateur_id = :id) AS upload_count
+        FROM t_utilisateur
+        WHERE utilisateur_id = :id
+    ";
+    $result = $this->queryPrepareExecute($query, ['id' => $userId]);
+    return $result->fetch(PDO::FETCH_ASSOC);
+}
+
+
+// Mettre à jour le pseudo d'un utilisateur
+public function updateUserPseudo($userId, $newPseudo) {
+    $query = "
+        UPDATE t_utilisateur
+        SET pseudo = :pseudo
+        WHERE utilisateur_id = :id
+    ";
+    return $this->queryPrepareExecute($query, ['pseudo' => $newPseudo, 'id' => $userId]);
+}
+
+//Récupérer les livres ajoutés par l'utilisateur
+public function getBooksUploadedByUser($userId) {
+    $query = "
+        SELECT titre, extrait, resume, annee, image, nombre_pages 
+        FROM t_ouvrage 
+        WHERE utilisateur_id = :id
+    ";
+    $req = $this->queryPrepareExecute($query, ['id' => $userId]);
+    return $this->formatData($req); // Retourne les résultats sous forme de tableau associatif
+}
+
+//Récupérer les livres notés par l'utilisateur (avec alias pour simplifier)
+public function getBooksRatedByUser($userId) {
+    $query = "
+        SELECT 
+            o.titre, 
+            o.extrait, 
+            o.nombre_pages, 
+            o.image, 
+            a.note 
+        FROM apprecier a
+        INNER JOIN t_ouvrage o ON a.ouvrage_id = o.ouvrage_id
+        WHERE a.utilisateur_id = :id
+    ";
+    $req = $this->queryPrepareExecute($query, ['id' => $userId]);
+    return $this->formatData($req); // Retourne les résultats sous forme de tableau associatif
+}
+
+
    
 }
 ?>
