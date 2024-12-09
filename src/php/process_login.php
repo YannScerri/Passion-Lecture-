@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $_POST['pseudo'];
     $password = $_POST['password'];
     
-    $db = new Database();
+    $db = new Database(false);
     $user = $db->getUserByLogin($user);
     
     // Vérifie si l'utilisateur existe et si le mot de passe correspond

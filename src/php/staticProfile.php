@@ -7,7 +7,7 @@
  */
 
  include("Database.php");
- $db = new Database();
+ $db = new Database(false);
 
  //simuler un utilisateur
  $userID = 1;
@@ -16,11 +16,7 @@
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $newPseudo = $_POST['pseudo'];
 }
-// Inclure la classe Database
-require_once 'Database.php';
 
-// Initialiser l'objet Database
-$db = new Database();
 
 // ID de l'utilisateur simulé
 $userId = 1; // Exemple statique, à remplacer par un système de sessions

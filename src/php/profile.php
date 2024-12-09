@@ -17,7 +17,7 @@ if (!isset($_SESSION['userId'])) {
 }
 
 // Initialiser l'objet Database
-$db = new Database();
+$db = new Database(false);
 
 // Déterminer quel utilisateur afficher (utilisateur connecté ou autre)
 $userId = $_SESSION['userId'];

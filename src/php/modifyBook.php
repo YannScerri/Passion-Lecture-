@@ -11,7 +11,7 @@
 include("Database.php");
 
 // Créer une instance de la base de données
-$db = new Database;
+$db = new Database(false);
 
 // Récupérer les catégories
 $categories = $db->getAllCategories();

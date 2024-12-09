@@ -7,7 +7,7 @@
  */
 
  require_once 'Database.php';
- $db = new Database();
+ $db = new Database(false);
 
  //ces code pour affiches tout les livre comme admin
  //$ouvrage = $db->getOneOuvrage($_GET["ouvrage_id"]);

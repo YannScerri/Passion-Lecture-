@@ -11,11 +11,16 @@ class Database {
     // Variable de classe
     private $connector;
 
-    public function __construct()
+    public function __construct($isIndex)
     {
+        if($isIndex){
+            $path = 'json/config.json';
+        } else {
+            $path = '../json/config.json';
+        }
         try {
             // Lire le fichier de config json
-            $json = file_get_contents('../json/config.json');
+            $json = file_get_contents($path);
 
             // Charger la configuration depuis le fichier JSON
             $config = json_decode($json, true);
@@ -33,6 +38,7 @@ class Database {
             die('Erreur : ' . $e->getMessage());
         }
     }
+
 
     /**
      * Méthode permettant d'exécuter une simple requête SQL

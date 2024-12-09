@@ -10,7 +10,7 @@
 
  include('./Database.php');
 
- $db = new Database();
+ $db = new Database(false);
 
  $book = $db->getBook($_POST['bookId']);
 

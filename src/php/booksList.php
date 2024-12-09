@@ -1,7 +1,6 @@
 <?php
-include("header.php");
 include("./Database.php");
-$db = new Database();
+$db = new Database(false);
 ?>
 <html lang="fr">
 
@@ -13,6 +12,7 @@ $db = new Database();
     </head>
 
     <body>
+        <?php include("header.php");?>
         <main>
             <div class = "main_booksList">
                 <?php

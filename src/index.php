@@ -10,7 +10,7 @@ session_start();
 
  include './php/Database.php';
 
- $db = new Database();
+ $db = new Database(true);
 
  $lastBooks = $db->get5LastBooks(); 
 
@@ -31,7 +31,7 @@ session_start();
 </head>
 <body>
     <!-- inclusion du header-->
-    <?php include("./header.php");?>
+    <?php include("./php/header.php");?>
 
     <h2>Bienvenue à Passion Lecture ! </h2>
     <div class="welcomeText">
@@ -62,6 +62,6 @@ session_start();
 
 
     <!-- inclusion du footer-->
-    <?php include("./footer.php")?>
+    <?php include("./php/footer.php")?>
 </body>
 </html>
