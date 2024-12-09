@@ -120,165 +120,40 @@ class Database {
         // exécute la requête SQL
         return $this->formatData($this->querySimpleExecute($query));
     }
-
     /**
-     * Méthode pour insérer un livre dans la table t_ouvrage
+     * Methode permettant de retourner tout les livres pour une catégorie
      */
-    public function insertBook($data) {
-        $query = "
-            INSERT INTO t_ouvrage (titre, extrait, resume, annee, image, nombre_pages, utilisateur_id, categorie_id, editeur_id, auteur_id)
-            VALUES (:titre, :extrait, :resume, :annee, :image, :nombre_pages, :utilisateur_id, :categorie_id, :editeur_id, :auteur_id)
-        ";
+    public function getBooksByCategory($category){
+        // requete sql selectionnant tout les livres d'une catégorie
+         $query = "SELECT 
+        t_ouvrage.image AS photo_du_livre,
+        t_ouvrage.titre AS nom_du_livre,
+        CONCAT(t_auteur.prenom, ' ', t_auteur.nom) AS nom_de_l_auteur,
+        t_utilisateur.pseudo AS pseudo_ajouteur
+        FROM 
+            t_ouvrage
+        INNER JOIN 
+            t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
+        INNER JOIN 
+            t_utilisateur ON t_ouvrage.utilisateur_id = t_utilisateur.utilisateur_id
+        INNER JOIN 
+            t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
+        WHERE 
+            t_categorie.nom = '$category'";
 
-        return $this->queryPrepareExecute($query, $data);
+        // retourne le résultat ous forme de tableau
+        return $this->formatData($this->querySimpleExecute($query));
     }
 
     /**
-     * Récupère toutes les catégories
+     * Methode permettant de retourner tout les livres pour une catégorie
      */
-    public function getAllCategories() {
-        $query = "SELECT * FROM t_categorie";
-        $req = $this->querySimpleExecute($query);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public function getAllCategories(){
+        // requete sql selectionnant tout les livres d'une catégorie
+         $query = "SELECT * from t_categorie";
 
-    /**
-     * Récupère tous les auteurs
-     */
-    public function getAllAuthors() {
-        $query = "SELECT * FROM t_auteur";
-        $req = $this->querySimpleExecute($query);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-
-
-// Récupérer un utilisateur par son ID
-public function getUserById($userId) {
-    $query = "
-        SELECT 
-            pseudo, 
-            (SELECT COUNT(*) FROM apprecier WHERE utilisateur_id = :id) AS review_count,
-            (SELECT COUNT(*) FROM t_ouvrage WHERE utilisateur_id = :id) AS upload_count
-        FROM t_utilisateur
-        WHERE utilisateur_id = :id
-    ";
-    $result = $this->queryPrepareExecute($query, ['id' => $userId]);
-    return $result->fetch(PDO::FETCH_ASSOC);
-}
-
-
-// Mettre à jour le pseudo d'un utilisateur
-public function updateUserPseudo($userId, $newPseudo) {
-    $query = "
-        UPDATE t_utilisateur
-        SET pseudo = :pseudo
-        WHERE utilisateur_id = :id
-    ";
-    return $this->queryPrepareExecute($query, ['pseudo' => $newPseudo, 'id' => $userId]);
-}
-
-//Récupérer les livres ajoutés par l'utilisateur
-public function getBooksUploadedByUser($userId) {
-    $query = "
-        SELECT titre, extrait, resume, annee, image, nombre_pages 
-        FROM t_ouvrage 
-        WHERE utilisateur_id = :id
-    ";
-    $req = $this->queryPrepareExecute($query, ['id' => $userId]);
-    return $this->formatData($req); // Retourne les résultats sous forme de tableau associatif
-}
-
-//Récupérer les livres notés par l'utilisateur (avec alias pour simplifier)
-public function getBooksRatedByUser($userId) {
-    $query = "
-        SELECT 
-            o.titre, 
-            o.extrait, 
-            o.nombre_pages, 
-            o.image, 
-            a.note 
-        FROM apprecier a
-        INNER JOIN t_ouvrage o ON a.ouvrage_id = o.ouvrage_id
-        WHERE a.utilisateur_id = :id
-    ";
-    $req = $this->queryPrepareExecute($query, ['id' => $userId]);
-    return $this->formatData($req); // Retourne les résultats sous forme de tableau associatif
-}
-
-
-   
-    /**
-     * Récupère tous les éditeurs
-     */
-    public function getAllEditors() {
-        $query = "SELECT * FROM t_editeur";
-        $req = $this->querySimpleExecute($query);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    /**
-     * Supprime un livre
-     */
-    public function deleteBook($id) {
-        $query = "DELETE FROM t_ouvrage WHERE ouvrage_id LIKE :id";
-        $binds = ['id' => $id];
-        $this->queryPrepareExecute($query, $binds);
-    }
-
-    /**
-     * Récupère les informations d'un ouvrage spécifique par ID
-     */
-    public function getOneOuvrage($idOuvrage) {
-        $query = "
-            SELECT t_ouvrage.*, 
-                   t_auteur.nom AS auteur_nom, 
-                   t_auteur.prenom AS auteur_prenom, 
-                   t_editeur.nom AS editeur_nom, 
-                   t_categorie.nom AS categorie_nom
-            FROM t_ouvrage
-            JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
-            JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
-            JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
-            WHERE t_ouvrage.ouvrage_id = :ouvrage_id
-        ";
-
-        $req = $this->queryPrepareExecute($query, ["ouvrage_id" => $idOuvrage]);
-
-        $ouvrage = $req->fetch(PDO::FETCH_ASSOC);
-
-        return $ouvrage ?: null;
-    }
-
-    /**
-     * Récupère une catégorie spécifique par ID
-     */
-    public function getOneCategorie($idCategorie) {
-        $query = "SELECT * FROM t_categorie WHERE categorie_id = :categorie_id";
-        $binds = [":categorie_id" => $idCategorie];
-        $req = $this->queryPrepareExecute($query, $binds);
-        $categorie = $this->formatData($req);
-        return $categorie[0];
-    }
-
-    /**
-     * Récupère tous les ouvrages
-     */
-    public function getAllOuvrages() {
-        $query = "
-            SELECT t_ouvrage.*, t_auteur.nom AS auteur_nom, t_auteur.prenom AS auteur_prenom, 
-                   t_editeur.nom AS editeur_nom, t_categorie.nom AS categorie_nom
-            FROM t_ouvrage
-            JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
-            JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
-            JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
-        ";
-
-        $req = $this->querySimpleExecute($query);
-
-        $ouvrages = $this->formatData($req);
-
-        return $ouvrages;
+         //retourne le résultat de la requete sous forme de tableau
+         return $this->formatData($this->querySimpleExecute($query));
     }
 }
 ?>

@@ -12,6 +12,11 @@ main {
     align-items: center;
     height: 80vh;
     background-color: #fff;
+    padding: 20px;
+}
+
+.main_booksList{
+    padding-top: 150px;
 }
 
 /* Conteneur du formulaire */
@@ -82,6 +87,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+    min-height: 100vh; /* Assure une hauteur de page complète */
 }
 
 .header{
@@ -189,3 +195,74 @@ a{
     grid-column: 2;
     grid-row: 3;
 }
+
+footer{
+    width: 100%; /* Prend toute la largeur */
+    background-color: #FFE9C6; /* Beige clair pour correspondre au design */
+    text-align: center; /* Centre le contenu du footer */
+    padding: 20px 0; /* Espace intérieur */
+    position: fixed; /* Fixé en bas de la page */
+    bottom: 0; /* Toujours en bas */
+    left: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre pour la séparation */
+    z-index: 0; /* S'assure qu'il est toujours au-dessus d'autres éléments */
+}
+
+/* Conteneur pour les livres */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+    gap: 20px; /* Espacement entre les cartes */
+    margin: 20px 0;
+}
+
+/* Style des cartes individuelles */
+.book-card {
+    background-color: #FFE9C6; /* Beige clair */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex; /* Utilisation de Flexbox */
+    flex-direction: row; /* Aligne les éléments horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+    text-align: left; /* Texte aligné à gauche */
+    transition: transform 0.3s ease;
+    gap: 16px; /* Espacement entre l'image et le texte */
+}
+
+
+/* Image du livre */
+.book-card img {
+    max-width: 100px; /* Taille maximale fixe pour l'image */
+    height: auto;
+    border-radius: 4px;
+}
+
+.book-card .book-content {
+    display: flex;
+    flex-direction: column; /* Texte empilé verticalement */
+    gap: 8px; /* Espacement entre les éléments de texte */
+    width: 100%; /* S'assure que le texte occupe tout l'espace restant */
+}
+
+
+/* Titre du livre */
+.book-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin: 0 0 8px;
+}
+
+/* Texte des détails */
+.book-card p {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Effet au survol */
+.book-card:hover {
+    transform: scale(1.05); /* Légère mise en avant */
+}
+
+
