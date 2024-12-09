@@ -195,7 +195,7 @@ a{
 .book-details {
     display: flex; /* Permet un alignement horizontal */
     gap: 30px; /* Espacement entre les enfants */
-    
+    padding-top: 30px;
     padding-left: 70px;
     background-color: #FFE9C6; /* Beige clair */
     border-radius: 15px; /* Coins arrondis */
@@ -216,7 +216,7 @@ a{
     border-radius: 8px; /* Coins arrondis */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre visuelle */
     align-self: flex-start; /* Aligne l'image en haut */
-    margin-top: 0px;
+    margin-top: 10px;
 }
 
  /*p-DetailLivre*/
@@ -242,7 +242,7 @@ h2 {
 /*p-DetailLivre*/
 /* Style de l'évaluation */
 .book-rating {
-    margin-bottom: 15px; /* Espacement entre l'évaluation et l'image */
+    margin-bottom: 20px; /* Espacement entre l'évaluation et l'image */
     font-size: 1.2em;
     color: #333;
     font-weight: bold;
