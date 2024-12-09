@@ -23,7 +23,7 @@ $db = new Database();
 $userId = $_SESSION['userId'];
 $isVisiting = false; // Indique si on visite un autre profil
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+if (isset($_GET['id']) && is_numeric($_GET['id'])) { //vérification de l'id 
     $userId = intval($_GET['id']); // Profil à visiter
     $isVisiting = ($userId !== $_SESSION['userId']); // Vérifie si c'est un profil différent
 }
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
         </form>
     <?php endif; ?>
 
-    <!-- Affichage des livres ajoutés -->
+    <!-- Affichage des livres ajoutés s'il y'en a -->
     <h2>Livres ajoutés</h2>
     <?php if (!empty($uploadedBooks)): ?>
         <ul>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
         <p>Aucun livre ajouté.</p>
     <?php endif; ?>
 
-    <!-- Affichage des livres notés -->
+    <!-- Affichage des livres notés s'il y'en a -->
 <h2>Livres notés</h2>
 <?php if (!empty($ratedBooks)): ?>
     <ul>
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
             </li>
         <?php endforeach; ?>
     </ul>
-<?php else: ?>
+<?php else: ?> 
     <p>Aucun livre noté.</p>
 <?php endif; ?>
 
