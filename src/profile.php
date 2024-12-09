@@ -11,16 +11,12 @@ session_start(); // Démarre la session
 // Inclure la classe Database
 require_once 'Database.php';
 
-// Simuler une session utilisateur si aucune n'existe
-if (!isset($_SESSION['userId'])) {
-    $_SESSION['userId'] = 1; // ID utilisateur simulé (exemple : 1)
-}
 
 // Initialiser l'objet Database
-$db = new Database(false);
+$db = new Database();
 
 // Déterminer quel utilisateur afficher (utilisateur connecté ou autre)
-$userId = $_SESSION['userId'];
+$userId = $_SESSION['user']['id'];
 $isVisiting = false; // Indique si on visite un autre profil
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) { //vérification de l'id 
@@ -54,19 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Profil</title>
 </head>
 <body>
-<div class="header">
-    <div class="titre-header">
-        <h1>Passion Lecture</h1>
-    </div>
-
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="#">Liste des livres</a>
-    </nav>
-</div>
+<?php include('./header.php')?>
 <hr>
     <!-- Indication sur l'état de connexion -->
     <?php if ($isVisiting): ?>
@@ -126,8 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
 <?php endif; ?>
 
 <hr>
-<footer>
-    <p>Copyright Dany Carneiro, Yann Scerri, Maxime Pelloquin, Hanieh Mohajerani - Passion Lecture - 2024</p>
-</footer>
+<?php include('./footer.php')?>
 </body>
 </html>

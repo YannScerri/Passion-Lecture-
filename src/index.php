@@ -8,9 +8,9 @@
 
 session_start();
 
- include './php/Database.php';
+ include './Database.php';
 
- $db = new Database(true);
+ $db = new Database();
 
  $lastBooks = $db->get5LastBooks(); 
 
@@ -27,11 +27,11 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen">
 </head>
 <body>
     <!-- inclusion du header-->
-    <?php include("./php/header.php");?>
+    <?php include("./header.php");?>
 
     <h2>Bienvenue à Passion Lecture ! </h2>
     <div class="welcomeText">
@@ -62,6 +62,6 @@ session_start();
 
 
     <!-- inclusion du footer-->
-    <?php include("./php/footer.php")?>
+    <?php include("./footer.php")?>
 </body>
 </html>

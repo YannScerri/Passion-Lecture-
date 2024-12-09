@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $_POST['pseudo'];
     $password = $_POST['password'];
     
-    $db = new Database(false);
+    $db = new Database();
     $user = $db->getUserByLogin($user);
     
     // Vérifie si l'utilisateur existe et si le mot de passe correspond
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Message d'erreur en cas de login ou mot de passe incorrect
         echo "Login ou mot de passe incorrect.";
-        echo "<a href=\"index.php\">Accueil</a>";
+        echo "<a href=\"./index.php\">Accueil</a>";
     }
 }
 ?>

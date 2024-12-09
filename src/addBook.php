@@ -7,9 +7,9 @@
  */
 
 // Inclure la base de données
-include("Database.php");
+include("./Database.php");
 // Créer une instance de la base de données
-$db = new Database(false);
+$db = new Database();
 
 // Récupérer les catégories
 $categories = $db->getAllCategories();

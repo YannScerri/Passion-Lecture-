@@ -6,8 +6,8 @@
  * Description : Fichier staticProfile permettant de voir son profil ou le profil de quelqun d'autre (version sans session)
  */
 
- include("Database.php");
- $db = new Database(false);
+ include("./Database.php");
+ $db = new Database();
 
  //simuler un utilisateur
  $userID = 1;

@@ -11,16 +11,11 @@ class Database {
     // Variable de classe
     private $connector;
 
-    public function __construct($isIndex)
+    public function __construct()
     {
-        if($isIndex){
-            $path = 'json/config.json';
-        } else {
-            $path = '../json/config.json';
-        }
         try {
             // Lire le fichier de config json
-            $json = file_get_contents($path);
+            $json = file_get_contents('json/config.json');
 
             // Charger la configuration depuis le fichier JSON
             $config = json_decode($json, true);
@@ -161,7 +156,9 @@ class Database {
         t_ouvrage.image AS photo_du_livre,
         t_ouvrage.titre AS nom_du_livre,
         CONCAT(t_auteur.prenom, ' ', t_auteur.nom) AS nom_de_l_auteur,
-        t_utilisateur.pseudo AS pseudo_ajouteur
+        t_utilisateur.pseudo AS pseudo_ajouteur,
+        t_utilisateur.utilisateur_id AS utilisateur_id,
+        t_ouvrage.ouvrage_id AS ouvrage_id
         FROM 
             t_ouvrage
         INNER JOIN 

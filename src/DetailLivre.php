@@ -6,8 +6,8 @@
  * Description : Page de détail d'un livre
  */
 
- require_once 'Database.php';
- $db = new Database(false);
+ require_once './Database.php';
+ $db = new Database();
 
  //ces code pour affiches tout les livre comme admin
  //$ouvrage = $db->getOneOuvrage($_GET["ouvrage_id"]);

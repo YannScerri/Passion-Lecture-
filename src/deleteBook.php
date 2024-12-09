@@ -10,7 +10,7 @@
 
  include('./Database.php');
 
- $db = new Database(false);
+ $db = new Database();
 
  $id = $_GET['idBook'];
 

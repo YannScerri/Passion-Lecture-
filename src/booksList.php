@@ -1,6 +1,6 @@
 <?php
 include("./Database.php");
-$db = new Database(false);
+$db = new Database();
 ?>
 <html lang="fr">
 
@@ -8,11 +8,11 @@ $db = new Database(false);
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Liste Des Livres</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="./css/style.css">
     </head>
 
     <body>
-        <?php include("header.php");?>
+        <?php include("./header.php");?>
         <main>
             <div class = "main_booksList">
                 <?php
@@ -37,12 +37,12 @@ $db = new Database(false);
 
                             foreach ($books as $book) {
                                 echo "<div class='book-card'>";
-                                    echo "<a href='details.php?id={$book['id']}' class='book-content'>";
+                                    echo "<a href='details.php?id={$book['ouvrage_id']}' class='book-content'>";
                                         echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
                                         echo "<h3>{$book['nom_du_livre']}</h3>";
                                         echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
                                     echo "</a>";
-                                    echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?user={$book['utilisateur_id']}' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
+                                    echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?user=" . $book['utilisateur_id'] . "' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
                                 echo "</div>";
                             }
 
