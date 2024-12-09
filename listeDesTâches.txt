@@ -10,6 +10,9 @@ header/footer HTML
 
 6. page liste d'ouvrage par catégorie HTML
 7. page liste d'ouvrage par catégorie PHP
+- Trie par date d'ajout
+- trie par nombre de vote
+- trie par note
 
 8. Page de détail d'un livre avec ajout de note HTML
 9. Page de détail d'un livre avec ajout de note PHP

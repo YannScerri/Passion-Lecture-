@@ -1,7 +1,7 @@
 <?php
 /*
  * ETML
- * Auteur : Dany Carneiro
+ * Auteur : Dany Carneiro, Maxime Pelloquin, Yann Scerri, Hanieh Mohajerani
  * Date : 25.11.2024
  * Description : Fichier addBook permettant d'ajouter un nouvel ouvrage
  */
