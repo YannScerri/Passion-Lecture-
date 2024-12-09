@@ -37,12 +37,12 @@ $db = new Database();
 
                             foreach ($books as $book) {
                                 echo "<div class='book-card'>";
-                                    echo "<div class='book-content'>";
-                                    echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
-                                    echo "<h3>{$book['nom_du_livre']}</h3>";
-                                    echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
-                                    echo "<p>Ajouté par : {$book['pseudo_ajouteur']}</p>";
-                                    echo "</div>";
+                                    echo "<a href='details.php?id={$book['id']}' class='book-content'>";
+                                        echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
+                                        echo "<h3>{$book['nom_du_livre']}</h3>";
+                                        echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
+                                    echo "</a>";
+                                    echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?user={$book['utilisateur_id']}' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
                                 echo "</div>";
                             }
 
