@@ -27,6 +27,9 @@ $editor = $db->getEditorName($book['editeur_id']);
 
 $bookCategory = $db->getCategoryName($book['categorie_id']);
 
+//récupère uniquement l'année de la date du livre
+$year = DateTime::createFromFormat('Y-m-d', $book["annee"])->format('Y');
+
 ?>
 
 <!DOCTYPE html>
@@ -40,12 +43,13 @@ $bookCategory = $db->getCategoryName($book['categorie_id']);
 <body>
     <?php include('./header.php')?>
     <div class="bookinfos"></div>
-    <h2>Ajouter un livre</h2>
+    <h2>Modifier un livre</h2>
     <div class="form-container">
         <!-- Formulaire principal -->
-        <form class="form-main" action="./addBookAction.php" method="POST" enctype="multipart/form-data">
+        <form class="form-main" action="./modifyBookAction.php" method="POST" enctype="multipart/form-data">
             <?php
             $html = "";
+            $html .= '<input type="hidden" id="bookId" name="bookId" value="' . $bookId . '">';
             $html .= "<p>";
             $html .= '<label for="firstName"></label>';
             $html .= '<input type="text" name="firstName" id="firstName" placeholder="Prénom de l\'auteur" value="' . $author['prenom'] . '">';
@@ -64,7 +68,7 @@ $bookCategory = $db->getCategoryName($book['categorie_id']);
             $html .= '</p>';
             $html .= '<p>';
             $html .= '<label for="year"></label>';
-            $html .= '<input type="text" name="year" id="year" placeholder="Année de publication" value="' . $book['annee'] . '">';
+            $html .= '<input type="text" name="year" id="year" placeholder="Année de publication" value="' . $year . '">';
             $html .= '</p>';
             $html .= '<p>';
             $html .= '<label for="pagesNumber"></label>';
@@ -107,7 +111,7 @@ $bookCategory = $db->getCategoryName($book['categorie_id']);
             $html .= 'Formats acceptés : JPG, PNG, GIF';
             $html .= '</p>';
             $html .= '<p>';
-            $html .= '<button type="submit">Ajouter le livre</button>';
+            $html .= '<button type="submit">Modifier le livre</button>';
             $html .= '</p>';
 
             echo $html;

@@ -225,7 +225,7 @@ public function doesAuthorExists($firstName, $lastName){
  */
 public function addAuthor($firstName, $lastName){
 
-    $query = "INSERT INTO t_auteur (nom, prenom) VALUES (:firstName, :lastName)";
+    $query = "INSERT INTO t_auteur (nom, prenom) VALUES (:lastName, :firstName)";
 
     $binds = ['firstName' => $firstName, 'lastName' => $lastName];
 
@@ -316,6 +316,31 @@ public function getCategoryName($id){
     $query = "SELECT * FROM t_categorie WHERE categorie_id = '$id'";
 
     return $this->formatData($this->querySimpleExecute($query))[0];
+}
+
+/**
+ * modifie les informations d'un livre
+ */
+public function modifyBook($bookId, $title, $excerpt, $summary, $year, $cover, $pages, $userId, $categoryId, $editorId, $authorId){
+
+    $query = "UPDATE t_ouvrage 
+    SET titre = :title, extrait = :excerpt, resume = :summary, annee = :year, image = :cover, nombre_pages = :pages, utilisateur_id = :user, categorie_id = :category, editeur_id = :editor, auteur_id = :author
+    WHERE ouvrage_id = :id";
+
+    $binds = ["id"=>$bookId,
+                "title"=>$title,
+                "excerpt"=>$excerpt,
+                "summary"=>$summary,
+                "year"=>$year,
+                "cover"=>$cover,
+                "pages"=>$pages,
+                "user"=>$userId,
+                "category"=>$categoryId,
+                "editor"=>$editorId,
+                "author"=>$authorId
+            ];
+
+    $this->queryPrepareExecute($query, $binds);
 }
 }
 ?>
