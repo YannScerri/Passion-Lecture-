@@ -1,6 +1,3 @@
-<?php
-session_start()
-?>
 <div class="header">
     <div class="content-header">
         <div class="titre-header">
@@ -13,6 +10,6 @@ session_start()
         </nav>
     </div>
 
-    <a href="../php/connection.php"  class="userLink"><img src="../images/user.png" alt="icône de connexion" class="userIcon"></a>
+    <a href="./connection.php"  class="userLink"><img src="./images/user.png" alt="icône de connexion" class="userIcon"></a>
 
 </div>

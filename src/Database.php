@@ -15,7 +15,7 @@ class Database {
     {
         try {
             // Lire le fichier de config json
-            $json = file_get_contents('../json/config.json');
+            $json = file_get_contents('./json/config.json');
 
             // Charger la configuration depuis le fichier JSON
             $config = json_decode($json, true);
