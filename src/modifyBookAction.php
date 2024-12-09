@@ -23,7 +23,7 @@
  //si aucune image n'a été ajoutée dans le formulaire, l'image déjà dans la base de données est sélectionnée
  //si une image est rentrée, supprime l'ancienne et stocke la nouvelle
 if (isset($_FILES['bookCover']) && $_FILES['bookCover']['error'] === 0) {
-    $dest = '../images/' . date("YmdHis");
+    $dest = './images/' . date("YmdHis");
     $dest .= $image['name'];
     move_uploaded_file($image['tmp_name'], $dest);
     unlink($db->getBookImage($_POST['bookId']));

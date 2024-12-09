@@ -8,7 +8,7 @@
 
 
 // Inclure la base de données
-include("Database.php");
+include("./Database.php");
 
 // Créer une instance de la base de données
 $db = new Database();
@@ -37,7 +37,7 @@ $year = DateTime::createFromFormat('Y-m-d', $book["annee"])->format('Y');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <title>Page d'ajout</title>
 </head>
 <body>

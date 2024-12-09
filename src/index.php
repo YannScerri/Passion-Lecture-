@@ -14,11 +14,6 @@ session_start();
 
  $lastBooks = $db->get5LastBooks(); 
 
- //debug
- //echo "<pre>";
- //var_dump($lastBooks);
- //echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +43,7 @@ session_start();
 
                 $html = '<div class="book">';
                 $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
-                $html .= '<h3 class="bookTitle">' . $book["titre"] . '</h3>';
+                $html .= "<a href='./details.php?id=" . $book['ouvrage_id'] . "'><h3 class='bookTitle'>" . $book["titre"] . '</h3></a>';
                 $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
                 $html .= '<p class="bookUser">Ajouté par : ' . $book["pseudo"] . '</p>';
                 $html .= '</div>';

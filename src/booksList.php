@@ -37,7 +37,7 @@ $db = new Database();
 
                             foreach ($books as $book) {
                                 echo "<div class='book-card'>";
-                                    echo "<a href='details.php?id={$book['ouvrage_id']}' class='book-content'>";
+                                    echo "<a href='DetailLivre.php?id={$book['ouvrage_id']}' class='book-content'>";
                                         echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
                                         echo "<h3>{$book['nom_du_livre']}</h3>";
                                         echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";

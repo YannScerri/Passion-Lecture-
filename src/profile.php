@@ -21,7 +21,7 @@ $isVisiting = false; // Indique si on visite un autre profil
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) { //vérification de l'id 
     $userId = intval($_GET['id']); // Profil à visiter
-    $isVisiting = ($userId !== $_SESSION['userId']); // Vérifie si c'est un profil différent
+    $isVisiting = ($userId !== $_SESSION['user']['id']); // Vérifie si c'est un profil différent
 }
 
 // Récupérer les données de l'utilisateur
@@ -39,7 +39,7 @@ $ratedBooks = $db->getBooksRatedByUser($userId);
 // Possibilité de changer le pseudo (uniquement pour le profil de l'utilisateur connecté)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isVisiting) {
     $newPseudo = htmlspecialchars($_POST['newPseudo']);
-    $db->updateUserPseudo($_SESSION['userId'], $newPseudo);
+    $db->updateUserPseudo($_SESSION['user']['id'], $newPseudo);
     header("Location: profile.php"); // Recharger la page
     exit;
 }
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
                 <p><strong>Extrait :</strong> <?php echo htmlspecialchars($book['extrait']); ?></p>
                 <p><strong>Nombre de pages :</strong> <?php echo $book['nombre_pages']; ?></p>
                 <p><strong>Note :</strong> <?php echo $book['note']; ?>/5</p>
-                <img src="images/<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
+                <img src="./images/<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
             </li>
         <?php endforeach; ?>
     </ul>
