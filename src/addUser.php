@@ -20,20 +20,25 @@
     <h2>Ajouter un nouvel utilisateur</h2>
 
     <form action="addUserAction.php" method="POST">
-        <label for="pseudo">Login :</label>
-        <input type="text" id="pseudo" name="pseudo" required>
-        
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
-        
-        <label for="administrator">Administrateur :</label>
-        <select id="administrator" name="administrator" required>
+    <label for="pseudo">Pseudo :</label>
+    <input type="text" id="pseudo" name="pseudo" required>
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="admin">Administrateur :</label>
+        <select id="admin" name="admin" required>
             <option value="1">Oui</option>
             <option value="0">Non</option>
         </select>
-        
-        <button type="submit">Ajouter l'utilisateur</button>
-    </form>
+
+    <label for="date_entree">Date d'entrée :</label>
+    <input type="date" id="date_entree" name="date_entree" required>
+
+    <button type="submit">Créer un compte</button>
+</form>
+
     <p><a href="index.php">Retour à la page d'accueil</a></p>
 </body>
 </html>
+

@@ -6,7 +6,6 @@
  * Description : Page d'acceuil de passion lecture comprenant une description du site et une liste des 5 derniers livres ajoutés
  */
 
-session_start();
 
  include './Database.php';
 
