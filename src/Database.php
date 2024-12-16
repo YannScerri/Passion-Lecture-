@@ -69,7 +69,7 @@ class Database {
      * Récupère les 5 derniers livres ajoutés
      */
     public function get5LastBooks() {
-        $query = "SELECT titre, image, pseudo, nom, prenom, ouvrage_id 
+        $query = "SELECT titre, image, pseudo, nom, prenom, ouvrage_id, t_ouvrage.utilisateur_id
                   FROM t_ouvrage 
                   INNER JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id 
                   INNER JOIN t_utilisateur ON t_utilisateur.utilisateur_id = t_ouvrage.utilisateur_id 
