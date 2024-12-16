@@ -78,28 +78,26 @@ class Database {
         return $this->formatData($this->querySimpleExecute($query));
     }
 
-    /**
-     * Méthode permettant l'ajout d'un utilisateur
-     */
-    public function addUser($pseudo, $password, $admin) {
+    public function addUser($pseudo, $password, $admin, $date_entree) {
         // Hashage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // requete sql permettant d'ajouter un utilisateur
+    
+        // Requête SQL permettant d'ajouter un utilisateur
         $query = "INSERT INTO t_utilisateur (pseudo, mot_de_passe, admin, date_entree)
-        VALUES (:pseudo, :password, :admin, :date_entree)";
-
-        $date = date("d/m/y");
-
+                  VALUES (:pseudo, :password, :admin, :date_entree)";
+        
+        // Préparation des valeurs à insérer
         $binds = [
             'pseudo' => $pseudo,
             'password' => $hashedPassword,
             'admin' => $admin,
-            'date_entree' => $date,
+            'date_entree' => $date_entree,
         ];
-
+        
+        // Exécution de la requête via une méthode personnalisée
         $this->queryPrepareExecute($query, $binds);
     }
+    
 
     /**
      * Méthode permettant de récupérer un utilisateur spécifique par son login
