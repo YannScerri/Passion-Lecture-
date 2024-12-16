@@ -199,8 +199,7 @@ class Database {
      * Récupérer un utilisateur par son ID
      */
     public function getUserById($userId) {
-        $query = "
-            SELECT 
+        $query = "SELECT 
                 pseudo, 
                 (SELECT COUNT(*) FROM apprecier WHERE utilisateur_id = :id) AS review_count,
                 (SELECT COUNT(*) FROM t_ouvrage WHERE utilisateur_id = :id) AS upload_count
@@ -285,18 +284,21 @@ class Database {
                    t_auteur.nom AS auteur_nom, 
                    t_auteur.prenom AS auteur_prenom, 
                    t_editeur.nom AS editeur_nom, 
-                   t_categorie.nom AS categorie_nom
+                   t_categorie.nom AS categorie_nom,
+                   t_utilisateur.utilisateur_id AS utilisateur_id, 
+                   t_utilisateur.pseudo AS utilisateur_pseudo
             FROM t_ouvrage
             JOIN t_auteur ON t_ouvrage.auteur_id = t_auteur.auteur_id
             JOIN t_editeur ON t_ouvrage.editeur_id = t_editeur.editeur_id
             JOIN t_categorie ON t_ouvrage.categorie_id = t_categorie.categorie_id
+            JOIN t_utilisateur ON t_ouvrage.utilisateur_id = t_utilisateur.utilisateur_id
             WHERE t_ouvrage.ouvrage_id = :ouvrage_id
         ";
-
+    
         $req = $this->queryPrepareExecute($query, ["ouvrage_id" => $idOuvrage]);
-
+    
         $ouvrage = $req->fetch(PDO::FETCH_ASSOC);
-
+    
         return $ouvrage ?: null;
     }
 

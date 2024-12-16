@@ -45,14 +45,12 @@ session_start();
                 $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
                 $html .= "<a href='./DetailLivre.php?id=" . $book['ouvrage_id'] . "'><h3 class='bookTitle'>" . $book["titre"] . '</h3></a>';
                 $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
-                $html .= "<a href='./profile.php?id=" . $book['utilisateur_id'] . "'<p class='bookUser'>Ajouté par : " . $book["pseudo"] . '</p>';
+                $html .= "<a href='./profile.php?id=" . $book['utilisateur_id'] . "'<p class='bookUser'>Ajouté par : " . $book["pseudo"] . '</a></p>';
                 $html .= '</div>';
 
                 echo $html;
             }
-
         ?>
-
     </div>
 
 

@@ -57,6 +57,7 @@
 
 
         <!-- Informations sur le livre -->
+<<<<<<< HEAD
         <div class="book-info">
             <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
             <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
@@ -65,6 +66,14 @@
             <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
         </div>
 
+=======
+        <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
+        <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
+        <p><strong>Date de publication :</strong> <?php echo htmlspecialchars($ouvrage['annee']); ?></p>
+        <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
+        <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
+        <p><strong>Ajouté par : </strong><a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>"><?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
+>>>>>>> 722504791a09b53eadfac92212241bbf7a0a8b2a
         <!-- Résumé du livre -->
         <div class="book-summary">
             <h3>Résumé</h3>
