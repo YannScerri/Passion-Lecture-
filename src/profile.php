@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
                     <h3><?php echo htmlspecialchars($book['titre']); ?></h3>
                     <p><strong>Extrait :</strong> <?php echo htmlspecialchars($book['extrait']); ?></p>
                     <p><strong>Nombre de pages :</strong> <?php echo $book['nombre_pages']; ?></p>
-                    <img src="images/<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
+                    <img src="<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
                 </li>
             <?php endforeach; ?>
         </ul>
