@@ -7,16 +7,42 @@
 
 /* Centrage global du formulaire */
 main {
+
+    background-color: #fff;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
-    background-color: #fff;
     padding: 20px;
 }
 
 .main_booksList{
     padding-top: 150px;
+
+}
+
+/* Conteneur du titre de la liste de livres et du bouton pour ajouter un livre*/
+.bookListTitle{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 33% 33% 33%;
+}
+
+/* Titre de la page de liste des livres*/
+.bookListTitle h1 {
+    justify-self: center;
+    grid-column: 2;
+}
+
+/* Bouton pour ajouter un livre */
+.bookListTitle button {
+    justify-self: right;
+    align-self: center;
+    grid-column: 3;
+    height: 40px;
+    width: 140px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Conteneur du formulaire */

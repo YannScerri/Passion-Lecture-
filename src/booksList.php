@@ -13,14 +13,17 @@ $db = new Database();
 
     <body>
         <?php include("./header.php");?>
+        <div class="bookListTitle">
+            <h1>Liste des Livres</h1>
+            <?php if(isset($_SESSION['user']) && $_SESSION['user']['isConnected']) :?>
+                <button><a href="./addBook.php">Ajouter un livre</a></button>
+            <?php endif;?>
+        </div>
         <main>
             <div class = "main_booksList">
                 <?php
                 // Récupérer toutes les catégories
                 $categories = $db->getAllCategories();
-
-                //-- TODO mise en page --\\
-
 
                 // Vérification si des catégories existent
                 if (!empty($categories)) {
