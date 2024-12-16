@@ -1,3 +1,4 @@
+
 /*
     ETML
     Auteur: Dany Carneiro
@@ -130,20 +131,9 @@ body {
     justify-self: center;
 }
 
-
-.disconnectButton {
-   position: absolute;
-   top: 5%;
-   right: 5%;
-   border-radius: 5px;
-   font-size: 16px;
-   z-index: 10;
-}
-
 .userIcon{
     max-width: 10%;
     height: auto;
-    margin: 0;
 }
 
 .userLink{
@@ -302,8 +292,25 @@ footer{
 .book-card:hover {
     transform: scale(1.05); /* Légère mise en avant */
 }
+ /*p-DetailLivre*/
+/*Revaluation,image,info livre*/
+.book-details {
+    display: flex; /* Permet un alignement horizontal */
+    gap: 30px; /* Espacement entre les enfants */
+    padding-top: 30px;
+    padding-left: 70px;
+    background-color: #FFE9C6; /* Beige clair */
+    border-radius: 15px; /* Coins arrondis */
+    max-width: 1200px; /* Largeur maximale */
+    width: auto; /* Double la largeur */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    flex-wrap: wrap; /* Permet aux éléments de s'adapter et se réorganiser */
+    justify-content: space-between; /* Répartition égale des éléments */
+    align-items: center; /* Centrer verticalement */
 
-/*p-DetailLivre*/
+}
+
+ /*p-DetailLivre*/
 /* L'image et les informations doivent occuper l'espace adéquat */
 .book-image {
     width: 300px; /* Limite la largeur de l'image */

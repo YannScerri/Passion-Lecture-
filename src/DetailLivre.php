@@ -23,7 +23,7 @@
     <!-- Lien vers le fichier CSS -->
 
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen">
 
 
 </head>
@@ -63,6 +63,7 @@
         <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
         <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
         <p><strong>Ajouté par : </strong><a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>"><?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
+
         <!-- Résumé du livre -->
         <div class="book-summary">
             <h3>Résumé</h3>
