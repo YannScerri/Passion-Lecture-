@@ -11,6 +11,7 @@
 
  $ouvrage = $db->getOneOuvrage($_GET['id']);
 
+
  
 ?>
 
@@ -73,15 +74,19 @@
             <br>
              <!-- Formulaire pour noter le livre -->
             <div class="book-rating-form">
-                <label for="rating">Noter ce livre :</label>
-                <select id="rating" name="rating">
-                    <option value="1">★☆☆☆☆</option>
-                    <option value="2">★★☆☆☆</option>
-                    <option value="3">★★★☆☆</option>
-                    <option value="4">★★★★☆</option>
-                    <option value="5">★★★★★</option>
-                </select>
-                <button type="submit" class="submit-btn">Valider</button>
+                <form action="./rateBook.php" method="post">
+                    <input type="hidden" value="<?php echo $ouvrage['ouvrage_id']?>" name="bookId">
+                    <input type="hidden" value="<?php echo $ouvrage['utilisateur_id']?>" name="userId">
+                    <label for="rating">Noter ce livre :</label>
+                    <select id="rating" name="rating">
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                    <button type="submit" class="submit-btn">Valider</button>
+                </form>
             </div>
             <br>
           <br>

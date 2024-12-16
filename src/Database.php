@@ -483,5 +483,22 @@ public function modifyBook($bookId, $title, $excerpt, $summary, $year, $cover, $
 
     $this->queryPrepareExecute($query, $binds);
 }
+
+/**
+ * noter un livre
+ */
+public function rateBook($bookId, $userId, $rating){
+
+    try{
+        $query = "INSERT INTO apprecier(ouvrage_id, utilisateur_id, note) VALUES (:bookId, :userId, :rating)";
+
+        $binds = ['bookId'=>$bookId, 'userId'=>$userId, 'rating'=>$rating];
+    
+        $this->queryPrepareExecute($query, $binds);
+
+    } catch(PDOException $e) {
+        die($e);
+    }
+}
 }
 ?>
