@@ -49,9 +49,13 @@
                 <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
             </div>
 
-            <img src="../images/HarryQuebert.png" 
-                alt="Image du livre La vérité sur l'affaire Harry Quebert" 
-                class="book-image">
+           <!-- Image dynamique du livre -->
+          
+           <img src="/images/<?php echo htmlspecialchars($ouvrage['image'] ?? 'default_image.png'); ?>" 
+     alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre'] ?? 'Livre inconnu'); ?>" 
+     class="book-image">
+
+
         </div>
 
         <!-- Informations sur le livre -->
