@@ -131,9 +131,19 @@ body {
     justify-self: center;
 }
 
+.disconnectButton {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 10;
+ }
+
 .userIcon{
     max-width: 10%;
     height: auto;
+    margin: 0;
 }
 
 .userLink{

@@ -48,7 +48,7 @@
 
            <!-- Image dynamique du livre -->
           
-           <img src="/images/<?php echo htmlspecialchars($ouvrage['image'] ?? 'default_image.png'); ?>" 
+           <img src="<?php echo htmlspecialchars($ouvrage['image'] ?? 'default_image.png'); ?>" 
      alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre'] ?? 'Livre inconnu'); ?>" 
      class="book-image">
 
