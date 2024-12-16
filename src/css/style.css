@@ -239,11 +239,10 @@ footer{
     background-color: #FFE9C6; /* Beige clair pour correspondre au design */
     text-align: center; /* Centre le contenu du footer */
     padding: 20px 0; /* Espace intérieur */
-    position: fixed; /* Fixé en bas de la page */
-    bottom: 0; /* Toujours en bas */
     left: 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre pour la séparation */
     z-index: 0; /* S'assure qu'il est toujours au-dessus d'autres éléments */
+    margin-top: 30px;
 }
 
 /* Conteneur pour les livres */
