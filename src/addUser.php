@@ -19,7 +19,7 @@
 
     <h2>Ajouter un nouvel utilisateur</h2>
 
-    <form action="process_register.php" method="POST">
+    <form action="addUserAction.php" method="POST">
     <label for="pseudo">Pseudo :</label>
     <input type="text" id="pseudo" name="pseudo" required>
 

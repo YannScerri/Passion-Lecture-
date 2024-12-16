@@ -11,12 +11,12 @@ include('./Database.php');
 $db = new Database();
 
 // Vérifier si le formulaire est soumis
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
     $pseudo = $_POST['pseudo'];
     $password = $_POST['password'];
-    $admin = intval($_POST)['password'];
-    $administrator = $_POST['administrator'];
+    $admin = intval($_POST['admin']); // Convertir en entier
+    $date_entree = $_POST['date_entree']; // Date fournie par l'utilisateur
 
 
     // Appeler la fonction addUser pour ajouter l'utilisateur
