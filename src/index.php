@@ -6,7 +6,6 @@
  * Description : Page d'acceuil de passion lecture comprenant une description du site et une liste des 5 derniers livres ajoutés
  */
 
-session_start();
 
  include './Database.php';
 
@@ -46,7 +45,7 @@ session_start();
                 $html .= "<a href='./DetailLivre.php?id=" . $book['ouvrage_id'] . "'><h3 class='bookTitle'>" . $book["titre"] . '</h3></a>';
                 $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
                 $html .= "<a href='./profile.php?id=" . $book['utilisateur_id'] . "'<p class='bookUser'>Ajouté par : " . $book["pseudo"] . '</p>';
-                echo var_dump($book);
+                //echo var_dump($book);
                 $html .= '</div>';
 
                 echo $html;

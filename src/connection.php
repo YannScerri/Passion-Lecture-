@@ -14,6 +14,7 @@ include("./header.php")
     </head>
 
     <body>
+    <a style="font-weight: bold;"  href="./addUser.php">Cliquez ici pour créer un nouveau compte</a>
         <main>
             <form class="form-container" action="process_login.php" method="post">
 
