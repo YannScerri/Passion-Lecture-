@@ -39,11 +39,13 @@ $db = new Database();
                             echo "<div class='books-grid'>"; // Conteneur des livres
 
                             foreach ($books as $book) {
+                                $rating = $db->getBookRatingAndVotes($book["ouvrage_id"]);
                                 echo "<div class='book-card'>";
                                     echo "<a href='DetailLivre.php?id={$book['ouvrage_id']}' class='book-content'>";
                                         echo "<img src='{$book['photo_du_livre']}' alt='Image du livre'>";
                                         echo "<h3>{$book['nom_du_livre']}</h3>";
                                         echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
+                                        echo '<p>'. number_format((float)$rating["moyenne_note"], 1) . '★ (' . $rating["nombre_votes"] .')</p>';
                                     echo "</a>";
                                     echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?user=" . $book['utilisateur_id'] . "' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
                                 echo "</div>";

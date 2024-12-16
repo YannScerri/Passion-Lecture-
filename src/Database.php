@@ -483,5 +483,24 @@ public function modifyBook($bookId, $title, $excerpt, $summary, $year, $cover, $
 
     $this->queryPrepareExecute($query, $binds);
 }
+
+/**
+ * Methode permettant de retourner la moyenne et le nombre de vote d'un livre
+ */
+public function getBookRatingAndVotes($idOuvrage){
+    $query = "SELECT 
+        t_ouvrage.ouvrage_id, 
+        t_ouvrage.titre, 
+        COALESCE(AVG(apprecier.note), 0) AS moyenne_note, 
+        COUNT(apprecier.utilisateur_id) AS nombre_votes
+    FROM t_ouvrage
+    LEFT JOIN apprecier ON t_ouvrage.ouvrage_id = apprecier.ouvrage_id
+    WHERE t_ouvrage.ouvrage_id = :ouvrage_id
+    GROUP BY t_ouvrage.ouvrage_id";
+
+    $req = $this->queryPrepareExecute($query, ["ouvrage_id" => $idOuvrage]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
+
 }
 ?>

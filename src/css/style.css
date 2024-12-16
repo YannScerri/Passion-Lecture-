@@ -44,6 +44,7 @@ main {
     width: 140px;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 10;
 }
 
 /* Conteneur du formulaire */

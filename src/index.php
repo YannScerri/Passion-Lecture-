@@ -39,11 +39,12 @@
         <?php
             //Affichage des 5 derniers livres
             foreach($lastBooks as $book){
-
+                $rating = $db->getBookRatingAndVotes($book["ouvrage_id"]);
                 $html = '<div class="book">';
                 $html .= '<img src="' . $book["image"] . '" alt="couverture du livre" class="bookImg">';
                 $html .= "<a href='./DetailLivre.php?id=" . $book['ouvrage_id'] . "'><h3 class='bookTitle'>" . $book["titre"] . '</h3></a>';
                 $html .= '<p class="bookAuthor">Auteur : ' . $book["prenom"] . " " . $book["nom"] . '</p>';
+                $html .= '<p>'. number_format((float)$rating["moyenne_note"], 1) . '★ (' . $rating["nombre_votes"] .')</p>';
                 $html .= "<a href='./profile.php?id=" . $book['utilisateur_id'] . "'<p class='bookUser'>Ajouté par : " . $book["pseudo"] . '</a></p>';
                 $html .= '</div>';
 
