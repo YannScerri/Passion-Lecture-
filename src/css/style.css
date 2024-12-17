@@ -305,20 +305,17 @@ footer{
  /*p-DetailLivre*/
 /*Revaluation,image,info livre*/
 .book-details {
-    display: flex; /* Permet un alignement horizontal */
-    gap: 30px; /* Espacement entre les enfants */
-    padding-top: 30px;
-    padding-left: 70px;
+    display: flex;
+    flex-direction: column; /* Change l'alignement en colonne */
+    gap: 20px; /* Ajoute un espacement vertical entre les éléments */
+    padding: 30px; /* Ajuste le padding pour un meilleur espacement */
     background-color: #FFE9C6; /* Beige clair */
     border-radius: 15px; /* Coins arrondis */
-    max-width: 1200px; /* Largeur maximale */
-    width: auto; /* Double la largeur */
+    max-width: 1200px; /* Limite la largeur pour un affichage plus compact */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    flex-wrap: wrap; /* Permet aux éléments de s'adapter et se réorganiser */
-    justify-content: space-between; /* Répartition égale des éléments */
-    align-items: center; /* Centrer verticalement */
-
 }
+
 
  /*p-DetailLivre*/
 /* L'image et les informations doivent occuper l'espace adéquat */
@@ -334,12 +331,14 @@ footer{
  /*p-DetailLivre*/
  /*Informations sur le livre*/
 .book-info {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+    flex-direction: column;  /* Organise les éléments verticalement */
     font-size: 1em;
     color: #333;
     flex: 1; /* Prend tout l'espace restant disponible */
-    margin-top: 0px;
+    margin-top: 0;
+    gap: 10px; /* Ajoute un espacement entre les éléments */
+    padding: 0 20px; /* Ajoute de l'espace horizontal */
 }
 
  /*p-DetailLivre*/
@@ -366,7 +365,7 @@ h2 {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 100vh;  /* Assurez-vous que la page occupe toute la hauteur de la fenêtre */
+    min-height: 100vh;  
     padding: 20px;
     background-color: #fff;
     padding-bottom: 80px; /* Ajoute un peu de place en bas pour le footer */
