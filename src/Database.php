@@ -78,7 +78,7 @@ class Database {
         return $this->formatData($this->querySimpleExecute($query));
     }
 
-    public function addUser($pseudo, $password, $admin, $date_entree) {
+    public function addUser($pseudo, $password, $admin) {
         // Hashage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
@@ -86,12 +86,14 @@ class Database {
         $query = "INSERT INTO t_utilisateur (pseudo, mot_de_passe, admin, date_entree)
                   VALUES (:pseudo, :password, :admin, :date_entree)";
         
+        $date = date("d/m/y");
+
         // Préparation des valeurs à insérer
         $binds = [
             'pseudo' => $pseudo,
             'password' => $hashedPassword,
             'admin' => $admin,
-            'date_entree' => $date_entree,
+            'date_entree' => $date,
         ];
         
         // Exécution de la requête via une méthode personnalisée

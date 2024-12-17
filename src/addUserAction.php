@@ -15,12 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
     $pseudo = $_POST['pseudo'];
     $password = $_POST['password'];
-    $admin = intval($_POST['admin']); // Convertir en entier
-    $date_entree = $_POST['date_entree']; // Date fournie par l'utilisateur
+    $admin= $_POST['admin'];
 
 
     // Appeler la fonction addUser pour ajouter l'utilisateur
-    $db->addUser($pseudo, $password, $admin, $date_entree);
+    $db->addUser($pseudo, $password, $admin);
 
     // Redirection ou message de succès
     echo "Utilisateur ajouté avec succès !";
