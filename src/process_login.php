@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user'] = [
             'id' => $user['utilisateur_id'],
             'pseudo' => $user['pseudo'],
-            'administrator' => $user['administrator'],
+            'administrator' => $user['admin'],
             'isConnected' => true
         ];
 

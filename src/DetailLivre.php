@@ -10,8 +10,6 @@
  $db = new Database();
 
  $ouvrage = $db->getOneOuvrage($_GET['id']);
-
-
  
 ?>
 
@@ -31,6 +29,7 @@
 <body>
      <!-- Inclusion du header -->
      <?php include("./header.php") ?>
+     <?php var_dump($_SESSION['user']);?>
 
 <!-- Contenu principal -->
 <main class="Mycontainer">
