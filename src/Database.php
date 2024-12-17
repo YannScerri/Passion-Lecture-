@@ -391,8 +391,14 @@ public function getEditorID($editor){
 public function doesEditorExists($editor){
 
     $query = "SELECT 1 FROM t_editeur WHERE nom LIKE '$editor'";
+    
+    $result = $this->formatData($this->querySimpleExecute($query));
 
-    return $this->querySimpleExecute($query);
+    if(empty($result)){
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**

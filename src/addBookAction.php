@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //Vérifie si l'éditeur existe déja. Si ce n'est pas le cas, crée un nouvel éditeur puis récupère son id
-    if($db->doesEditorExists($editor)){
+    if(!$db->doesEditorExists($editor)){
 
         $db->addEditor($editor);
     }

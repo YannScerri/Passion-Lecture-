@@ -35,6 +35,10 @@
 <!-- Contenu principal -->
 <main class="Mycontainer">
     <h2> <?php echo htmlspecialchars($ouvrage['titre']); ?></h2>
+<!-- affichage du bouton de suppression si l'utilisateur qui visite la page est celui qui a ajouté le livre ou si c'est un administrateur-->
+    <?php if($_SESSION['user']['isConnected'] && $_SESSION['user']['id'] == $ouvrage['utilisateur_id'] || $_SESSION['user']['isConnected'] && $_SESSION['user']['administrator']) : ?>
+        <button type="button"><a href="./deleteBook.php?idBook=<?php echo $_GET['id']?>">Supprimer le livre</a></button>
+    <?php endif;?>
 
     <div class="book-details">
         
