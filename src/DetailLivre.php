@@ -10,7 +10,7 @@
  $db = new Database();
 
  $ouvrage = $db->getOneOuvrage($_GET['id']);
- 
+ $rating = $db->getBookRatingAndVotes($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
         <div class="book-image-container">
              <!-- Évaluation du livre -->
             <div class="book-rating">
-                <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
+                <p><?php echo number_format((float)$rating["moyenne_note"], 1); ?>★ noté par <?php echo $rating["nombre_votes"]; ?> utilisateurs</p>
             </div>
 
            <!-- Image dynamique du livre -->

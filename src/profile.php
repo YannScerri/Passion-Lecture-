@@ -29,6 +29,7 @@ $userData = $db->getUserById($userId);
 
 // Vérifier si l'utilisateur existe
 if (!$userData) {
+    var_dump($_SESSION);
     die("Utilisateur non trouvé.");
 }
 
@@ -55,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
 </head>
 <body>
 <?php include('./header.php')?>
-<hr>
     <!-- Indication sur l'état de connexion -->
     <?php if ($isVisiting): ?>
         <p>Vous visitez le profil de <strong><?php echo htmlspecialchars($userData['pseudo']); ?></strong>.</p>
@@ -105,15 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newPseudo']) && !$isV
                 <p><strong>Extrait :</strong> <?php echo htmlspecialchars($book['extrait']); ?></p>
                 <p><strong>Nombre de pages :</strong> <?php echo $book['nombre_pages']; ?></p>
                 <p><strong>Note :</strong> <?php echo $book['note']; ?>/5</p>
-                <img src="./images/<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
+                <img src="<?php echo htmlspecialchars($book['image']); ?>" alt="Image du livre" style="width:100px; height:auto;">
             </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?> 
     <p>Aucun livre noté.</p>
 <?php endif; ?>
-
-<hr>
 <?php include('./footer.php')?>
 </body>
 </html>

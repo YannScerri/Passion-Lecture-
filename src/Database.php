@@ -78,7 +78,7 @@ class Database {
         return $this->formatData($this->querySimpleExecute($query));
     }
 
-    public function addUser($pseudo, $password, $admin, $date_entree) {
+    public function addUser($pseudo, $password, $admin) {
         // Hashage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
@@ -86,12 +86,14 @@ class Database {
         $query = "INSERT INTO t_utilisateur (pseudo, mot_de_passe, admin, date_entree)
                   VALUES (:pseudo, :password, :admin, :date_entree)";
         
+        $date = date("d/m/y");
+
         // Préparation des valeurs à insérer
         $binds = [
             'pseudo' => $pseudo,
             'password' => $hashedPassword,
             'admin' => $admin,
-            'date_entree' => $date_entree,
+            'date_entree' => $date,
         ];
         
         // Exécution de la requête via une méthode personnalisée
@@ -489,6 +491,25 @@ public function modifyBook($bookId, $title, $excerpt, $summary, $year, $cover, $
 
     $this->queryPrepareExecute($query, $binds);
 }
+
+/**
+ * Methode permettant de retourner la moyenne et le nombre de vote d'un livre
+ */
+public function getBookRatingAndVotes($idOuvrage){
+    $query = "SELECT 
+        t_ouvrage.ouvrage_id, 
+        t_ouvrage.titre, 
+        COALESCE(AVG(apprecier.note), 0) AS moyenne_note, 
+        COUNT(apprecier.utilisateur_id) AS nombre_votes
+    FROM t_ouvrage
+    LEFT JOIN apprecier ON t_ouvrage.ouvrage_id = apprecier.ouvrage_id
+    WHERE t_ouvrage.ouvrage_id = :ouvrage_id
+    GROUP BY t_ouvrage.ouvrage_id";
+
+    $req = $this->queryPrepareExecute($query, ["ouvrage_id" => $idOuvrage]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
+
 
 /**
  * noter un livre
