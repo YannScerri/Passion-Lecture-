@@ -57,24 +57,27 @@
 
 
         </div>
+        <img src="<?php echo !empty($ouvrage['image']) ? './images/' . htmlspecialchars($ouvrage['image']) : './images/default_image.png'; ?>" 
+             alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre'] ?? 'Livre inconnu'); ?>" 
+             class="book-image">
+    </div>
 
-
-        <!-- Informations sur le livre -->
+    <!-- Conteneur pour les informations -->
+    <div class="book-info-container">
         <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
         <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
         <p><strong>Date de publication :</strong> <?php echo htmlspecialchars($ouvrage['annee']); ?></p>
         <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
         <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
-        <p><strong>Ajouté par : </strong><a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>"><?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
-
+        <p><strong>Ajouté par :</strong> <a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>">
+            <?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
+            </div>
         <!-- Résumé du livre -->
         <div class="book-summary">
             <h3>Résumé</h3>
             <p><?php echo nl2br(htmlspecialchars($ouvrage['resume'])); ?></p>
-            <br>
             <hr>
-            <br>
-             <!-- Formulaire pour noter le livre -->
+            <!-- Formulaire pour noter le livre -->
             <div class="book-rating-form">
                 <form action="./rateBook.php" method="post">
                     <input type="hidden" value="<?php echo $ouvrage['ouvrage_id']?>" name="bookId">
@@ -90,11 +93,9 @@
                     <button type="submit" class="submit-btn">Valider</button>
                 </form>
             </div>
-            <br>
-          <br>
         </div>
-      
     </div>
+</div>
 
 
 </main>

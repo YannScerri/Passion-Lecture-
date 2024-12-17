@@ -307,7 +307,7 @@ footer{
 /*Revaluation,image,info livre*/
 .book-details {
     display: flex; /* Permet un alignement horizontal */
-    gap: 30px; /* Espacement entre les enfants */
+    gap: 5px; /* Espacement entre les enfants */
     padding-top: 30px;
     padding-left: 70px;
     background-color: #FFE9C6; /* Beige clair */
@@ -330,17 +330,18 @@ footer{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre visuelle */
     align-self: flex-start; /* Aligne l'image en haut */
     margin-top: 10px;
+    margin-right: 5px;
 }
 
  /*p-DetailLivre*/
  /*Informations sur le livre*/
-.book-info {
+.book-info-container {
     display: flex;
     flex-direction: column;
     font-size: 1em;
     color: #333;
     flex: 1; /* Prend tout l'espace restant disponible */
-    margin-top: 0px;
+    margin-top: 5%;
 }
 
  /*p-DetailLivre*/
