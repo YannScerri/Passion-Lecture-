@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'isConnected' => true
         ];
 
-        
         // Redirige l'utilisateur vers la page d'accueil après une connexion réussie
         header("Location: index.php");
         exit();

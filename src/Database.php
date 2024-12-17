@@ -86,7 +86,7 @@ class Database {
         $query = "INSERT INTO t_utilisateur (pseudo, mot_de_passe, admin, date_entree)
                   VALUES (:pseudo, :password, :admin, :date_entree)";
         
-        $date = date("d/m/y");
+        $date = date("y/m/d");
 
         // Préparation des valeurs à insérer
         $binds = [

@@ -25,7 +25,7 @@
         <input type="text" id="pseudo" name="pseudo" required>
 
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="mot_de_passe" required>
+        <input type="password" id="password" name="password" required>
 
         <label for="admin">Administrateur :</label>
             <select id="admin" name="admin" required>
