@@ -16,10 +16,12 @@ session_start()
     <!-- affichage du bouton de déconnexion si l'utilisateur est connecté -->
     <?php if($_SESSION['user']['isConnected']) : ?>
         <button class="disconnectButton"><a href="./Disconnect.php">Se déconnecter</a></button>
-    <?php endif; ?>
+    <?php else: ?>
+        <button class="disconnectButton"><a href="./connection.php">Se connecter</a></button>
+    <?php endif;?>
 
     <!-- lien vers la connexion ou le profil de l'utilisateur sur l'icone-->
-    <?php if(isset($_SESSION['user']) && !$_SESSION['user']['isConnected']) : ?>
+    <?php if(!$_SESSION['user']['isConnected']) : ?>
         <a href="./connection.php"  class="userLink"><img src="./images/user.png" alt="icône de connexion" class="userIcon"></a>
     <?php else:?>
         <a href="./profile.php"  class="userLink"><img src="./images/user.png" alt="icône de connexion" class="userIcon"></a>
