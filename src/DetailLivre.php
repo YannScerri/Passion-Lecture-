@@ -35,6 +35,7 @@
 <main class="Mycontainer">
     <h2> <?php echo htmlspecialchars($ouvrage['titre']); ?></h2>
 
+    <div class ="image-info-book">
    <div class="book-details">
     <!-- Conteneur pour l'image et la note -->
     <div class="book-image-container">
@@ -55,7 +56,7 @@
         <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
         <p><strong>Ajouté par :</strong> <a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>">
             <?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
-
+            </div>
         <!-- Résumé du livre -->
         <div class="book-summary">
             <h3>Résumé</h3>
