@@ -43,10 +43,10 @@ CREATE TABLE t_ouvrage(
    editeur_id INT NOT NULL,
    auteur_id INT NOT NULL,
    PRIMARY KEY(ouvrage_id),
-   FOREIGN KEY(utilisateur_id) REFERENCES t_utilisateur(utilisateur_id),
-   FOREIGN KEY(categorie_id) REFERENCES t_categorie(categorie_id),
-   FOREIGN KEY(editeur_id) REFERENCES t_editeur(editeur_id),
-   FOREIGN KEY(auteur_id) REFERENCES t_auteur(auteur_id)
+   FOREIGN KEY(utilisateur_id) REFERENCES t_utilisateur(utilisateur_id) ON DELETE CASCADE,
+   FOREIGN KEY(categorie_id) REFERENCES t_categorie(categorie_id) ON DELETE CASCADE,
+   FOREIGN KEY(editeur_id) REFERENCES t_editeur(editeur_id) ON DELETE CASCADE,
+   FOREIGN KEY(auteur_id) REFERENCES t_auteur(auteur_id) ON DELETE CASCADE
 );
 
 CREATE TABLE apprecier(
@@ -54,6 +54,6 @@ CREATE TABLE apprecier(
    utilisateur_id INT,
    note TINYINT,
    PRIMARY KEY(ouvrage_id, utilisateur_id),
-   FOREIGN KEY(ouvrage_id) REFERENCES t_ouvrage(ouvrage_id),
-   FOREIGN KEY(utilisateur_id) REFERENCES t_utilisateur(utilisateur_id)
+   FOREIGN KEY(ouvrage_id) REFERENCES t_ouvrage(ouvrage_id) ON DELETE CASCADE,
+   FOREIGN KEY(utilisateur_id) REFERENCES t_utilisateur(utilisateur_id) ON DELETE CASCADE
 );
