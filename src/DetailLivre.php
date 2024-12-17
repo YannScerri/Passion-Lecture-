@@ -35,42 +35,33 @@
 <main class="Mycontainer">
     <h2> <?php echo htmlspecialchars($ouvrage['titre']); ?></h2>
 
-    <div class="book-details">
-        
-
-   
-        <!-- Section image du livre -->
-        <div class="book-image-container">
-             <!-- Évaluation du livre -->
-            <div class="book-rating">
-                <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
-            </div>
-
-           <!-- Image dynamique du livre -->
-           <img src="<?php echo !empty($ouvrage['image']) ? './images/' . htmlspecialchars($ouvrage['image']) : './images/default_image.png'; ?>" 
-     alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre'] ?? 'Livre inconnu'); ?>" 
-     class="book-image">
-
-
+   <div class="book-details">
+    <!-- Conteneur pour l'image et la note -->
+    <div class="book-image-container">
+        <div class="book-rating">
+            <p>4.2★ noté par 52 utilisateurs</p> <!-- Exemple statique -->
         </div>
+        <img src="<?php echo !empty($ouvrage['image']) ? './images/' . htmlspecialchars($ouvrage['image']) : './images/default_image.png'; ?>" 
+             alt="Image du livre <?php echo htmlspecialchars($ouvrage['titre'] ?? 'Livre inconnu'); ?>" 
+             class="book-image">
+    </div>
 
-
-        <!-- Informations sur le livre -->
+    <!-- Conteneur pour les informations -->
+    <div class="book-info-container">
         <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
         <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
         <p><strong>Date de publication :</strong> <?php echo htmlspecialchars($ouvrage['annee']); ?></p>
         <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
         <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
-        <p><strong>Ajouté par : </strong><a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>"><?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
+        <p><strong>Ajouté par :</strong> <a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>">
+            <?php echo htmlspecialchars($ouvrage['utilisateur_pseudo']); ?></a></p>
 
         <!-- Résumé du livre -->
         <div class="book-summary">
             <h3>Résumé</h3>
             <p><?php echo nl2br(htmlspecialchars($ouvrage['resume'])); ?></p>
-            <br>
             <hr>
-            <br>
-             <!-- Formulaire pour noter le livre -->
+            <!-- Formulaire pour noter le livre -->
             <div class="book-rating-form">
                 <label for="rating">Noter ce livre :</label>
                 <select id="rating" name="rating">
@@ -82,11 +73,9 @@
                 </select>
                 <button type="submit" class="submit-btn">Valider</button>
             </div>
-            <br>
-          <br>
         </div>
-      
     </div>
+</div>
 
 
 </main>
