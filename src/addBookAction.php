@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Gestion de l'upload de l'image
     if (isset($_FILES['bookCover']) && $_FILES['bookCover']['error'] === 0) {
-        $dest = './images/' . date("YmdHis");
+        $dest = './images_book/' . date("YmdHis");
         $dest .= $image['name'];
         move_uploaded_file($image['tmp_name'], $dest);
     }
