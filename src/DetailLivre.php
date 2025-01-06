@@ -11,6 +11,8 @@
 
  $ouvrage = $db->getOneOuvrage($_GET['id']);
  $rating = $db->getBookRatingAndVotes($_GET['id']);
+
+ $year = date_create($ouvrage['annee']);
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +62,7 @@
             <div class="book-info-container">
                 <p><strong>Auteur :</strong> <?php echo htmlspecialchars($ouvrage['auteur_nom']) . " " . htmlspecialchars($ouvrage['auteur_prenom']); ?></p>
                 <p><strong>Éditeur :</strong> <?php echo htmlspecialchars($ouvrage['editeur_nom']); ?></p>
-                <p><strong>Date de publication :</strong> <?php echo htmlspecialchars($ouvrage['annee']); ?></p>
+                <p><strong>Année de publication :</strong> <?php echo htmlspecialchars(date_format($year, "Y")); ?></p>
                 <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($ouvrage['categorie_nom']); ?></p>
                 <p><strong>Nombre de page :</strong> <?php echo htmlspecialchars($ouvrage['nombre_pages']); ?></p>
                 <p><strong>Ajouté par :</strong> <a href="profile.php?user=<?php echo htmlspecialchars($ouvrage['utilisateur_id']); ?>">
