@@ -8,6 +8,10 @@ CREATE TABLE t_categorie(
    UNIQUE(nom)
 );
 
+INSERT INTO t_categorie (
+   nom
+) VALUES ('Policier'), ('Fantaisie'), ('Science-Fiction'), ('Romance');
+
 CREATE TABLE t_auteur(
    auteur_id INT AUTO_INCREMENT,
    nom VARCHAR(128) NOT NULL,
