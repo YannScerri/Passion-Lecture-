@@ -77,7 +77,7 @@
                 <div class="book-rating-form">
                     <form action="./rateBook.php" method="post">
                         <input type="hidden" value="<?php echo $ouvrage['ouvrage_id']?>" name="bookId">
-                        <input type="hidden" value="<?php echo $ouvrage['utilisateur_id']?>" name="userId">
+                        <input type="hidden" value="<?php echo $_SESSION['user']['id']?>" name="userId">
                         <label for="rating">Noter ce livre :</label>
                         <select id="rating" name="rating">
                             <option value="1">★☆☆☆☆</option>
