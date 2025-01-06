@@ -27,12 +27,6 @@
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
 
-        <label for="admin">Administrateur :</label>
-            <select id="admin" name="admin" required>
-                <option value="1">Oui</option>
-                <option value="0">Non</option>
-            </select>
-
         <button type="submit">Créer un compte</button>
     </form>
 

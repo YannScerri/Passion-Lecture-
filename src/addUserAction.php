@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
     $pseudo = $_POST['pseudo'];
     $password = $_POST['password'];
-    $admin= $_POST['admin'];
+    $admin= 0;
 
 
     // Appeler la fonction addUser pour ajouter l'utilisateur
