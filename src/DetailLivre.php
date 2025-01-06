@@ -74,6 +74,7 @@
                 <p><?php echo nl2br(htmlspecialchars($ouvrage['resume'])); ?></p>
                 <hr>
                 <!-- Formulaire pour noter le livre -->
+                 <?php if(!$db->hasUserRated($_SESSION['user']['id'], $ouvrage['ouvrage_id'])): ?>
                 <div class="book-rating-form">
                     <form action="./rateBook.php" method="post">
                         <input type="hidden" value="<?php echo $ouvrage['ouvrage_id']?>" name="bookId">
@@ -89,6 +90,7 @@
                         <button type="submit" class="submit-btn">Valider</button>
                     </form>
                 </div>
+                <?php endif;?>
             </div>
         </div>
     </main>

@@ -527,5 +527,18 @@ public function rateBook($bookId, $userId, $rating){
         die($e);
     }
 }
+
+public function hasUserRated($userID, $bookID){
+
+    $query = "SELECT 1 FROM apprecier WHERE ouvrage_id = $bookID AND utilisateur_id = $userID";
+
+    $result = $this->formatData($this->querySimpleExecute($query));
+
+    if(empty($result)){
+        return false;
+    } else {
+        return true;
+    }
+}
 }
 ?>
