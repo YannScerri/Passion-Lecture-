@@ -22,7 +22,7 @@ session_start()
 
     <!-- lien vers la connexion ou le profil de l'utilisateur sur l'icone-->
     <?php if(!$_SESSION['user']['isConnected']) : ?>
-        <a href="./connection.php"  class="userLink"><img src="./images/user.png" alt="icône de connexion" class="userIcon"></a>
+        <a href="./connection.php"  class="userLink"><img src="./images_utilities/user.png" alt="icône de connexion" class="userIcon"></a>
     <?php else:?>
         <a href="./profile.php"  class="userLink"><img src="./images_utilities/user.png" alt="icône de connexion" class="userIcon"></a>
     <?php endif;?>
