@@ -47,7 +47,7 @@ $db = new Database();
                                         echo "<p>Auteur : {$book['nom_de_l_auteur']}</p>";
                                         echo '<p>'. number_format((float)$rating["moyenne_note"], 1) . '★ (' . $rating["nombre_votes"] .')</p>';
                                     echo "</a>";
-                                    echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?user=" . $book['utilisateur_id'] . "' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
+                                    echo "<p class='pseudo-section'>Ajouté par : <a href='profile.php?id=" . $book['utilisateur_id'] . "' class='pseudo-link'>{$book['pseudo_ajouteur']}</a></p>";
                                 echo "</div>";
                             }
 
