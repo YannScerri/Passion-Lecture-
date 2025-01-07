@@ -1,8 +1,8 @@
 <?php
-/// Auteur : Maxime Pelloquin
-/// Date : 25.11.2024
+/// Auteur :Dany Carneiro
+/// Date : 07.01.2025
 /// Ecole : ETML
-/// Description : Page web incluant un formulaire permettant d'ajouter un utlisateur
+/// Description : Page web incluant un formulaire permettant d'ajouter un utlisateur adminisatrateur
 
     include("./Database.php");
     $db = new Database();
@@ -12,14 +12,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un utilisateur</title>
+    <title>Ajouter un administrateur</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-    <h2>Ajouter un nouvel utilisateur</h2>
+    <h2>Ajouter un nouvel administrateur</h2>
 
-    <form class = form-container action="addUserAction.php" method="POST">
+    <form class = form-container action="createAdminAction.php" method="POST">
         <label for="pseudo">Pseudo :</label>
         <input type="text" id="pseudo" name="pseudo" required>
 
@@ -32,4 +32,3 @@
     <p><a href="index.php">Retour à la page d'accueil</a></p>
 </body>
 </html>
-
