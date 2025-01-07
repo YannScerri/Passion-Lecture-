@@ -1,3 +1,3 @@
 src/json/config.json
-src/images_book/
+src/images_book/*
 !src/images_book/example.jpg
