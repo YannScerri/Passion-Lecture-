@@ -1,0 +1,10 @@
+{
+    "database": {
+    "host": "myHost",
+    "port": 6033,
+    "dbname": "db_passionLivre",
+    "username": "root",
+    "password": "root",
+    "charset": "utf8"
+  }
+}
